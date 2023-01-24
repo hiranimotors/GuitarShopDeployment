@@ -16,8 +16,8 @@ router.get("/signup", (req, res, next) => {
 router.post("/signup", async (req, res, next) => {
   try {
     console.log(req.body);
-    const { email, password, userType } = req.body;
-    if (!email || !password || !userType) {
+    const { email, password, userType, name, consent } = req.body;
+    if (!email || !password || !userType || !name || !consent) {
       console.log("info missing");
       res.render("auth/signup.hbs", {
         errorMessage:
