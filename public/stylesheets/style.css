@@ -31,8 +31,16 @@ h1 {
 
 }
 
-#topNav {
+#topNav a {
+  text-decoration: none;
+  color: black;
   
+}
+
+#bottomNav ul{
+  list-style:none;
+  padding-left: 0;
+
 }
 
 #topNav ul {
@@ -47,7 +55,23 @@ h1 {
   display: flex;
   flex-direction: row;
   gap: 10px;
+
 }
+
+#mainNav li {
+  border: 1px;
+  border-style: solid;
+  background-color: blueviolet;
+  padding: 5px 10px 5px 10px;
+  border-radius: 5px;
+}
+
+#mainNav a {
+  text-decoration: none;
+  color: black;
+}
+
+
 
 #imageRotate {
   display: flex;
@@ -62,7 +86,37 @@ h1 {
   width: 500px;
 }
 
-#warning {
+.warning {
   color: red;
 }
+
+#form form{
+  display: flex;
+  flex-direction: column;
+  width: 25vw;
+  
+}
+
+#form input {
+  width:100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+
 

@@ -12,4 +12,11 @@ const isLoggedOut = (req,res,next) => {
     next()
 }
 
-module.exports = {isLoggedIn,isLoggedOut}
+const isAdmin = (req, res, next) => {
+    if(req.session.currentUser.userType !== "admin"){
+        res.redirect('/profile')
+    }
+    next()
+}
+
+module.exports = {isLoggedIn,isLoggedOut,isAdmin}
