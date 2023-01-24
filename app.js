@@ -24,6 +24,10 @@ const projectName = "GuitarShop";
 
 app.locals.appTitle = `${capitalize(projectName)} created with IronLauncher`;
 
+// Session
+
+require('./config/session.config')(app)
+
 // 👇 Start handling routes here
 const indexRoutes = require("./routes/index.routes");
 app.use("/", indexRoutes);
