@@ -94,6 +94,13 @@ router.post("/login", async (req, res, next) => {
   }
 });
 
+router.get('/logout', (req, res, next) => {
+  req.session.destroy(err => {
+    if (err) next(err);
+    res.redirect('/');
+  });
+});
+
 router.get("/profile", isLoggedIn, (req, res, next) => {
   try {
     res.render("profile/user-profile", {
@@ -107,7 +114,9 @@ router.get("/profile", isLoggedIn, (req, res, next) => {
 router.get("/all-products", async (req, res, next) => {
   try {
     const allProducts = await Product.find();
-    res.render("all-products", allProducts);
+    console.log(allProducts)
+  
+    res.render("all-products", {allProducts});
   } catch (err) {
     next(err);
   }
@@ -122,5 +131,13 @@ router.get("/admin", isAdmin, (req, res, next) => {
     next(err);
   }
 });
+
+router.get("/products/:productId", (req, res, next) =>{
+  Product.findById(req.params.productId)
+  .then(individualProduct => {
+    console.log(individualProduct)
+    res.render("individualProduct", individualProduct)
+  })
+})
 
 module.exports = router;
