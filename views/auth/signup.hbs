@@ -1,3 +1,5 @@
+
+<div class="container">
 <div id="form">
   <h2>Signup</h2>
   <form action="/signup" method="POST">
@@ -9,12 +11,18 @@
       enter your email" required />
     </label>
     <label>Password
-      <input type="password" name="password" placeholder="*****" required />
+      <input type="password" name="password" placeholder="*****" class="form-control"required />
     </label>
-    <label>Admin or Customer?
-      <input name="userType" placeholder="who are you" required />
+    <label>Name
+      <input type="text" name="name" placeholder="Name" class="form-control" required />
     </label>
-    <button type="submit">Create Account</button>
+        <label>Do you consent to receive marketing
+      <select id="consent" name="consent" class="form-control">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+        </select>
+    </label>
+    <button type="submit" class="btn btn-primary">Create Account</button>
 
     {{#if errorMessage}}
       <p class="error">{{errorMessage}}</p>
@@ -23,4 +31,5 @@
       <p>{{newUserMessage}}</p>
     {{/if}}
   </form>
+</div>
 </div>

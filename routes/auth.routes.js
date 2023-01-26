@@ -1,7 +1,11 @@
 const router = require("express").Router();
 const User = require("../models/User.model");
 const Product = require("../models/Product.model");
-const { isLoggedIn, isLoggedOut } = require("../middleware/route.guard");
+const {
+  isLoggedIn,
+  isLoggedOut,
+  isAdmin,
+} = require("../middleware/route.guard");
 const bcrypt = require("bcryptjs");
 const saltRounds = 10;
 
@@ -16,8 +20,14 @@ router.get("/signup", (req, res, next) => {
 router.post("/signup", async (req, res, next) => {
   try {
     console.log(req.body);
-    const { email, password, userType, name, consent } = req.body;
-    if (!email || !password || !userType || !name || !consent) {
+    const { email, password, name, consent } = req.body;
+    // let consentBool = false
+    // if (consent === "on"){consentBool = true}
+    // if (!consent){
+
+    // }
+
+    if (!email || !password || !name || !consent) {
       console.log("info missing");
       res.render("auth/signup.hbs", {
         errorMessage:
@@ -40,7 +50,9 @@ router.post("/signup", async (req, res, next) => {
     await User.create({
       email: email,
       passwordHash: hashedPassword,
-      userType: userType,
+      name: name,
+      consent: consent,
+      userType: "user",
     });
     res.redirect("/login");
   } catch (err) {
@@ -96,6 +108,16 @@ router.get("/all-products", async (req, res, next) => {
   try {
     const allProducts = await Product.find();
     res.render("all-products", allProducts);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get("/admin", isAdmin, (req, res, next) => {
+  try {
+    res.render("auth/admin", {
+      userInSession: req.session.currentUser,
+    });
   } catch (err) {
     next(err);
   }

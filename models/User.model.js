@@ -18,6 +18,15 @@ const userSchema = new Schema(
       required: true,
       trim: true,
     },
+    name: {
+      type: String,
+      required: true,
+    },
+    consent: {
+      type: String,
+      required: true
+     
+    }
   },
   {
     timestamps: true,

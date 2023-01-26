@@ -1,6 +1,9 @@
 body {
-  padding: 50px;
+  margin: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 a {
@@ -16,23 +19,34 @@ h1 {
   flex-direction: row;
   justify-content: space-between;
   padding-right: 10px;
-  background-color: aquamarine;
+  background-color: #00071a;
 }
 
 #navSection {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  background-color: #00b7ff;
+  justify-content: center;
+  background-color: #566573;
 }
 
 #logo {
   padding-left: 20px;
+  color: white;
+}
 
+#topNav a {
+  text-decoration: none;
+  color: white;
 }
 
 #topNav {
-  
+  color: white;
+  padding-top: 5px;
+}
+
+#bottomNav ul {
+  list-style: none;
+  padding-left: 0;
 }
 
 #topNav ul {
@@ -42,6 +56,10 @@ h1 {
   gap: 10px;
 }
 
+#mainNav {
+  padding-top: 7px;
+}
+
 #mainNav ul {
   list-style: none;
   display: flex;
@@ -49,20 +67,105 @@ h1 {
   gap: 10px;
 }
 
+#mainNav li {
+  color: white;
+  font-size: 20px;
+}
+
+#mainNav a {
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+}
+
 #imageRotate {
   display: flex;
   flex-direction: row;
+  justify-content: center;
 }
 
 #carousel {
   width: 75vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
+
 
 #carousel img {
-  width: 500px;
+  width: 300px;
 }
 
-#warning {
+.warning {
   color: red;
+}
+
+#form form {
+  display: flex;
+  flex-direction: column;
+  width: 25vw;
+}
+
+#form input {
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+}
+
+#profileNav ul {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+#profileNav li {
+  font-size: 20px;
+}
+
+#profileNav a {
+  text-decoration: none;
+  font-size: 20px;
+}
+
+footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: #00071a;
+  color: white;
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  padding-top: 10px;
+}
+
+#carouselExample {
+  width: 550px;
+}
+
+
+.carouselCaption {
+  color: black;
+  text-align: end;
+  
+}
+
+.carousel-control-next
+{
+  filter: invert(100%);
+}
+.carousel-control-prev {
+  filter: invert(100%);
 }
 

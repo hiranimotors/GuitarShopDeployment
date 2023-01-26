@@ -1,6 +1,7 @@
 <div class="container">
-<h1>Welcome {{userInSession.username}}</h1>
-     <div id="mainNav">
+<div class="profile">
+<h1>Welcome {{userInSession.name}}</h1>
+     <div id="profileNav">
         <ul>
             <li>My Profile</li>
             <li>Edit Personal Information</li>
@@ -8,4 +9,13 @@
             <li class="warning">Delete</li>
         </ul>
     </div>
+    <div>
+        <p>Name: {{userInSession.name}}</p>
+        <p>Email: {{userInSession.email}}</p>
+        <p>Marketing: {{userInSession.consent}}</p>
+    </div>
+    </div>
+
+</div>
+
 </div>
