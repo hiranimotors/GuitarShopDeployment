@@ -1,0 +1,21 @@
+<div class="containter">
+
+<h1>All Products</h1>
+{{#each allProducts}}
+<div id="productImg">
+    <img src="{{images}}">
+</div>
+<div id="productInfo">
+    <ul>
+        <li>Name: {{productName}}</li>
+        <li>Manufacturer: {{manufacturer}}</li>
+        <li>Model: {{model}}</li>
+        <li>Price: {{price}}</li>
+        <li>Description: {{description}}</li>
+        <li>Frets: {{frets}}</li>
+        <li>Pickups: {{pickups}}</li>        
+    </ul>
+</div>
+{{/each}}
+
+</div>

@@ -11,18 +11,18 @@
       enter your email" required />
     </label>
     <label>Password
-      <input type="password" name="password" placeholder="*****" required />
+      <input type="password" name="password" placeholder="*****" class="form-control"required />
     </label>
     <label>Name
-      <input type="text" name="name" placeholder="Name" required />
+      <input type="text" name="name" placeholder="Name" class="form-control" required />
     </label>
         <label>Do you consent to receive marketing
-      <select id="consent" name="consent">
+      <select id="consent" name="consent" class="form-control">
         <option value="Yes">Yes</option>
         <option value="No">No</option>
         </select>
     </label>
-    <button type="submit">Create Account</button>
+    <button type="submit" class="btn btn-primary">Create Account</button>
 
     {{#if errorMessage}}
       <p class="error">{{errorMessage}}</p>
