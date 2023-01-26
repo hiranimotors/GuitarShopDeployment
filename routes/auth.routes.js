@@ -92,4 +92,10 @@ router.get("/profile", isLoggedIn, (req, res, next) => {
   }
 });
 
+router.get("/acoustic", async (req, res, next) => {
+  const image = await Product.findOne({productName: "Epiphone Hummingbird"});
+  console.log(image);
+  res.render("acoustic", image )
+})
+
 module.exports = router;

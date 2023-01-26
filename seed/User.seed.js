@@ -13,7 +13,7 @@ const data = [
     email: "craig@craig",
     passwordHash: "fjghsdfhgjksdhgj",
     userType: "admin",
-  }
+  },
 ];
 
 mongoose
