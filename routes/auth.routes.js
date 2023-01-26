@@ -92,4 +92,13 @@ router.get("/profile", isLoggedIn, (req, res, next) => {
   }
 });
 
+router.get("/all-products", async (req, res, next) => {
+  try {
+    const allProducts = await Product.find();
+    res.render("all-products", allProducts);
+  } catch (err) {
+    next(err);
+  }
+});
+
 module.exports = router;
