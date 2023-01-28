@@ -40,7 +40,7 @@ const productSchema = new Schema(
       type: Number,
     },
     pickups: {
-      type: [String],
+      type: String,
       trim: true,
     },
   },
