@@ -6,13 +6,11 @@ const MONGO_URI = require("../db/index");
 const data = [
   {
     productType: "acoustic guitar",
-    productName: "Epiphone Hummingbird",
-    manufacturer: "Epiphone",
-    model: "Epiphone Hummingbird",
+    productName: "Martin Acoustic",
+    manufacturer: "Martin",
+    model: "Martin AG1",
     price: 456,
-    images: [
-      "../public/images/products/acoustic guitars jpg/Epiphone-Hummingbird.jpg",
-    ],
+    images: "https://images.media-allrecipes.com/images/75131.jpg",
     colour: "Sunburst",
     description: "A fine guitar indeed",
     frets: 20,
@@ -29,8 +27,7 @@ const data = [
     description: "A beautiful thing to behold",
     frets: 24,
     pickups: "Fat 50s",
-  }
-
+  },
 ];
 
 mongoose
@@ -42,10 +39,3 @@ mongoose
   .catch((error) => {
     console.log(error);
   });
-
-// images
-// amps
-
-// fender 65 deluxe reverb
-// https://cdn.webshopapp.com/shops/179375/files/385059382/image.jpg
-

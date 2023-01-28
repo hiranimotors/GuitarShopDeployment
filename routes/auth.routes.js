@@ -94,10 +94,10 @@ router.post("/login", async (req, res, next) => {
   }
 });
 
-router.get('/logout', (req, res, next) => {
-  req.session.destroy(err => {
+router.get("/logout", (req, res, next) => {
+  req.session.destroy((err) => {
     if (err) next(err);
-    res.redirect('/');
+    res.redirect("/");
   });
 });
 
@@ -114,9 +114,9 @@ router.get("/profile", isLoggedIn, (req, res, next) => {
 router.get("/all-products", async (req, res, next) => {
   try {
     const allProducts = await Product.find();
-    console.log(allProducts)
-  
-    res.render("all-products", {allProducts});
+    console.log(allProducts);
+
+    res.render("all-products", { allProducts });
   } catch (err) {
     next(err);
   }
@@ -132,18 +132,84 @@ router.get("/admin", isAdmin,(req, res, next) => {
   }
 });
 
+router.get("/products/:productId", (req, res, next) => {
+  Product.findById(req.params.productId)
+    .then((individualProduct) => {
+      console.log(individualProduct);
+      res.render("individualProduct", individualProduct);
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
 
-router.get("/:productId", (req, res, next) =>{
-  try{
-    Product.findById(req.params.productId)
-    .then(individualProduct => {
-      console.log(individualProduct)
-      res.render("individualProduct", individualProduct)
-  })
-  }catch(err){
-    next(err)
+// ADMIN ROUTES
+
+router.get("/admin/all-products", async (req, res, next) => {
+  try {
+    const allProducts = await Product.find();
+    console.log(allProducts);
+
+    res.render("admin/adminAllProducts", { allProducts });
+  } catch (err) {
+    next(err);
   }
-})
+});
+
+router.get("/admin/:productId", (req, res, next) => {
+  try {
+    Product.findById(req.params.productId).then((individualProduct) => {
+      console.log(individualProduct);
+      res.render("admin/adminIndividualProduct", individualProduct);
+    });
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get("/admin/create-product", (req, res, next) => {
+  try {
+    res.render("admin/adminCreateProduct");
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post("/admin/create-product", async (req, res, next) => {
+  try {
+    await Product.create(req.body);
+    res.redirect("/admin/adminAllProducts");
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post("/admin/:productId/delete", async (req, res, next) => {
+  try {
+    await Product.findByIdAndRemove(req.params.productId);
+    res.redirect("/admin/adminAllProducts");
+  } catch (err) {
+    next(err);
+  }
+});
+
+// router.get("/admin/:productId/edit", async (req, res, next) => {
+//   try {
+//     const product = await Product.findById(req.params.productId);
+//     res.render("admin/edit-product", product);
+//   } catch (err) {
+//     next(err);
+//   }
+// });
+
+router.post("/admin/:productId/edit", async (req, res, next) => {
+  try {
+    await Celebrity.findByIdAndUpdate(req.params.productID, req.body);
+    res.redirect(`/admin/${req.params.productId}`);
+  } catch (err) {
+    next(err);
+  }
+});
 
 
 
