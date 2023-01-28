@@ -30,7 +30,7 @@ const productSchema = new Schema(
       required: true,
     },
     colour: {
-      type: String,
+      type: [String],
     },
     description: {
       type: String,
