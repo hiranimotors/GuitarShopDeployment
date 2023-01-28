@@ -186,8 +186,9 @@ router.post("/admin/create-product", async (req, res, next) => {
 
 router.post("/admin/:productId/delete", async (req, res, next) => {
   try {
-    await Product.findByIdAndRemove(req.params.productId);
-    res.redirect("/admin/adminAllProducts");
+    console.log(req.params)
+    await Product.findByIdAndDelete(req.params.productId);
+    await res.redirect("/admin/all-products");
   } catch (err) {
     next(err);
   }
@@ -204,7 +205,7 @@ router.post("/admin/:productId/delete", async (req, res, next) => {
 
 router.post("/admin/:productId/edit", async (req, res, next) => {
   try {
-    await Celebrity.findByIdAndUpdate(req.params.productID, req.body);
+    await Product.findByIdAndUpdate(req.params.productId, req.body);
     res.redirect(`/admin/${req.params.productId}`);
   } catch (err) {
     next(err);
