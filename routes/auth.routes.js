@@ -4,7 +4,7 @@ const Product = require("../models/Product.model");
 const {
   isLoggedIn,
   isLoggedOut,
-  isAdmin,
+  isAdmin
 } = require("../middleware/route.guard");
 const bcrypt = require("bcryptjs");
 const saltRounds = 10;
@@ -86,7 +86,7 @@ router.post("/login", async (req, res, next) => {
       req.session.currentUser = user;
       await res.redirect("/profile");
     }
-    if (!bcrypt.compareSync(password, user.hashedPassword)) {
+    if (!bcrypt.compareSync(password, user.passwordHash)) {
       await res.render("auth/login", { errorMessage: "Incorrect Password" });
     }
   } catch (err) {
@@ -122,9 +122,9 @@ router.get("/all-products", async (req, res, next) => {
   }
 });
 
-router.get("/admin", isAdmin, (req, res, next) => {
+router.get("/admin", isAdmin,(req, res, next) => {
   try {
-    res.render("auth/admin", {
+    res.render("admin/adminHome", {
       userInSession: req.session.currentUser,
     });
   } catch (err) {
@@ -132,12 +132,19 @@ router.get("/admin", isAdmin, (req, res, next) => {
   }
 });
 
-router.get("/products/:productId", (req, res, next) =>{
-  Product.findById(req.params.productId)
-  .then(individualProduct => {
-    console.log(individualProduct)
-    res.render("individualProduct", individualProduct)
+
+router.get("/:productId", (req, res, next) =>{
+  try{
+    Product.findById(req.params.productId)
+    .then(individualProduct => {
+      console.log(individualProduct)
+      res.render("individualProduct", individualProduct)
   })
+  }catch(err){
+    next(err)
+  }
 })
+
+
 
 module.exports = router;

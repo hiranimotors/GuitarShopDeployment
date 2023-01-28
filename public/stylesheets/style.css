@@ -78,24 +78,6 @@ h1 {
   font-size: 20px;
 }
 
-#imageRotate {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-
-#carousel {
-  width: 75vw;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-
-
-#carousel img {
-  width: 300px;
-}
-
 .warning {
   color: red;
 }
@@ -114,6 +96,7 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 100vh;
 }
 
 .profile {
@@ -144,17 +127,34 @@ footer {
   justify-content: space-around;
   background-color: #00071a;
   color: white;
-  position: fixed;
+  margin-top: auto;
   bottom: 0;
   width: 100vw;
   padding-top: 10px;
 }
 
 #carouselExample {
+  width: 750px;
+  
+}
+
+.carousel-item img {
   width: 550px;
 }
 
+.tales {
+  width: 100%;
+}
+.carousel-inner{
+  width:100%;
+  max-height: 560px !important;
+}
 
+.container-md {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
 .carouselCaption {
   color: black;
   text-align: end;
@@ -168,10 +168,53 @@ footer {
 .carousel-control-prev {
   filter: invert(100%);
 }
+.carousel-indicators {
+  filter: invert(100%);
+}
 
 .allProducts {
   display: flex;
   flex-direction: row;
-  gap: 25px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#adminNav {
+  padding-top: 7px;
+}
+
+#adminNav ul {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+#adminNav li {
+
+  font-size: 20px;
+}
+
+#adminNav a {
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+}
+
+#productName {
+  width: 90vw;
+}
+
+#productLeft {
+  width: 45vw;
+}
+
+#productRight {
+  width: 40vw;
+}
+
+.individualProduct {
+  display: flex;
+  flex-direction: row;
 }
 

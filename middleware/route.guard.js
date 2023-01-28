@@ -13,7 +13,9 @@ const isLoggedOut = (req,res,next) => {
 }
 
 const isAdmin = (req, res, next) => {
-    if(req.session.currentUser.userType !== "admin"){
+    const userType = req.session.currentUser.userType
+    console.log(req.session.currentUser.userType)
+    if(userType !== "admin"){
         res.redirect('/profile')
     }
     next()

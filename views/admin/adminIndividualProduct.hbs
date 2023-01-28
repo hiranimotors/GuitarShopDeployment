@@ -1,0 +1,57 @@
+<div class="container">
+    
+    <h2>Edit</h2>
+     <div id="adminNav">
+        <ul>
+            <li>User List</li>
+            <li>Product Lists</li>
+            <li>Create New Product</li>
+           
+        </ul>
+    </div>
+<div id="form">
+      <form action="/admin/{{_Id}}" method="POST"></form>
+    <div class="mb-3">
+  <label for="productName" class="form-label">Product Name</label>
+  <input type="text" name="productName" class="form-control" id="productName" placeholder="{{productName}}">
+</div>
+    <div class="mb-3">
+  <label for="productType" class="form-label">Product Type</label>
+  <input type="text" name="productType" class="form-control" id="productType" placeholder="">
+</div>
+    <div class="mb-3">
+  <label for="manufacturer" class="form-label">Manufacturer</label>
+  <input type="text" name="manufacturer" class="form-control" id="manufacturer" placeholder="">
+</div>
+    <div class="mb-3">
+  <label for="model" class="form-label">model</label>
+  <input type="text" name="model" class="form-control" id="model" placeholder="">
+</div>
+    <div class="mb-3">
+  <label for="price" class="form-label">Price</label>
+  <input type="text" name="price" class="form-control" id="price" placeholder="">
+</div>
+    <div class="mb-3">
+  <label for="images" class="form-label">Image URL</label>
+  <input type="text" class="form-control" id="images" placeholder="">
+</div>
+    <div class="mb-3">
+  <label for="colour" class="form-label">Colour</label>
+  <input type="text" name="colour" class="form-control" id="colour" placeholder="">
+</div>
+    <div class="mb-3">
+  <label for="frets" class="form-label">Frets</label>
+  <input type="text" name="frets" class="form-control" id="frets" placeholder="">
+</div>
+    <div class="mb-3">
+  <label for="pickups" class="form-label">Pickups</label>
+  <input type="text" class="form-control" id="pickups" placeholder="">
+</div>
+<div class="mb-3">
+  <label for="description" class="form-label">Description</label>
+  <textarea class="form-control" name="description" id="description" rows="3"></textarea>
+</div>
+<button type="button" class="btn btn-danger">Delete Product</button>
+</div>
+</div>
+
