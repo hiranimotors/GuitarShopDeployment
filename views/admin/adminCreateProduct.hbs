@@ -10,14 +10,14 @@
         </ul>
     </div>
 <div id="form">
-      <form action="" method="POST"></form>
+      <form action="/admin/create-product" method="POST">
     <div class="mb-3">
   <label for="productName" class="form-label">Product Name</label>
   <input type="text" name="productName" class="form-control" id="productName" placeholder="">
 </div>
     <div class="mb-3">
   <label for="productType" class="form-label">Product Type</label>
-  <input type="text" name="productType" class="form-control" id="productType" placeholder="name@example.com">
+  <input type="text" name="productType" class="form-control" id="productType" placeholder="">
 </div>
     <div class="mb-3">
   <label for="manufacturer" class="form-label">Manufacturer</label>
@@ -52,6 +52,8 @@
   <textarea class="form-control" name="description" id="description" rows="3"></textarea>
 </div>
 
+<button type="submit" class="btn btn-primary">Submit</button>
+</form>
 </div>
 </div>
 

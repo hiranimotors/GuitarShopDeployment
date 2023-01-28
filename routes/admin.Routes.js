@@ -12,7 +12,7 @@ const saltRounds = 10;
 // ADMIN ROUTES
 
 
-router.get("/all-products", async (req, res, next) => {
+router.get("/all-products", isLoggedIn, isAdmin, async (req, res, next) => {
   try {
     const allProducts = await Product.find();
     console.log(allProducts);
@@ -23,7 +23,24 @@ router.get("/all-products", async (req, res, next) => {
   }
 });
 
-router.get("/:productId", (req, res, next) => {
+router.get("/create-product", isLoggedIn, isAdmin, (req, res, next) => {
+    try {
+      res.render("admin/adminCreateProduct");
+    } catch (err) {
+      next(err);
+    }
+  });
+  
+  router.post("/create-product", isLoggedIn, isAdmin, async (req, res, next) => {
+    try {
+      await Product.create(req.body);
+      res.redirect("/admin/all-products");
+    } catch (err) {
+      next(err);
+    }
+  });
+
+router.get("/:productId",isLoggedIn, isAdmin, (req, res, next) => {
   try {
     Product.findById(req.params.productId).then((individualProduct) => {
       console.log(individualProduct);
@@ -35,24 +52,7 @@ router.get("/:productId", (req, res, next) => {
 });
 
 
-router.get("/create-product", (req, res, next) => {
-  try {
-    res.render("adminCreateProduct");
-  } catch (err) {
-    next(err);
-  }
-});
-
-router.post("/create-product", async (req, res, next) => {
-  try {
-    await Product.create(req.body);
-    res.redirect("/admin/all-products");
-  } catch (err) {
-    next(err);
-  }
-});
-
-router.post("/:productId/delete", async (req, res, next) => {
+router.post("/:productId/delete",isLoggedIn, isAdmin, async (req, res, next) => {
   try {
     const id = req.params.productId
     console.log("id is" + id)
@@ -72,7 +72,7 @@ router.post("/:productId/delete", async (req, res, next) => {
 //   }
 // });
 
-router.post("/admin/:productId/edit", async (req, res, next) => {
+router.post("/admin/:productId/edit",isLoggedIn, isAdmin, async (req, res, next) => {
   try {
     await Product.findByIdAndUpdate(req.params.productId, req.body);
     res.redirect(`/admin/${req.params.productId}`);

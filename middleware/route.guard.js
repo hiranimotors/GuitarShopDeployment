@@ -17,7 +17,8 @@ const isAdmin = (req, res, next) => {
     console.log(req.session.currentUser.userType)
     if(userType !== "admin"){
         res.redirect('/profile')
-    }
+    } 
+    
     next()
 }
 

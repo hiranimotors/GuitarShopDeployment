@@ -94,6 +94,9 @@ router.post("/login", async (req, res, next) => {
   }
 });
 
+
+
+
 router.get("/logout", (req, res, next) => {
   req.session.destroy((err) => {
     if (err) next(err);
@@ -122,7 +125,40 @@ router.get("/all-products", async (req, res, next) => {
   }
 });
 
-router.get("/admin", isAdmin,(req, res, next) => {
+router.get("/acousticguitars", (req, res, next) => {
+  Product.find({productType: "acoustic guitar"})
+  .then((acousticGuitars) => {
+    console.log(acousticGuitars)
+    res.render("all-products", { acousticGuitars })
+  })
+  .catch ((err) => {
+    next(err);
+  })
+});
+
+router.get("/electricguitars", (req, res, next) => {
+  Product.find({productType: "electric guitar"})
+  .then((electricGuitars) => {
+    console.log(electricGuitars)
+    res.render("all-products", { electricGuitars })
+  })
+  .catch ((err) => {
+    next(err);
+  })
+});
+
+router.get("/bassguitars", (req, res, next) => {
+  Product.find({productType: "bass guitar"})
+  .then((bassGuitars) => {
+    console.log(bassGuitars)
+    res.render("all-products", { bassGuitars })
+  })
+  .catch ((err) => {
+    next(err);
+  })
+});
+
+router.get("/admin", isLoggedIn, isAdmin,(req, res, next) => {
   try {
     res.render("admin/adminHome", {
       userInSession: req.session.currentUser,
@@ -142,6 +178,7 @@ router.get("/products/:productId", (req, res, next) => {
       next(err);
     });
 });
+
 
 
 module.exports = router;
