@@ -1,7 +1,7 @@
 <div class="container">
 
 <h1>All Products</h1>
-<div class="allProducts">
+<div class="productsDisplay">
 
 
 {{#each allProducts}}
@@ -9,8 +9,8 @@
   <img src="{{images}}" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title">{{productName}}</h5>
-    <p class="card-text">{{price}}</p>
-    <a href="/admin/{{_id}}" class="btn btn-primary">Go somewhere</a>
+    <p class="card-text">£{{price}}</p>
+    <a href="/admin/{{_id}}" class="btn btn-primary">More Info</a>
   </div>
 </div>
 

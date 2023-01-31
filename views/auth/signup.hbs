@@ -1,23 +1,22 @@
 
 <div class="container">
-<div id="form">
+<div id="form" >
   <h2>Signup</h2>
   <form action="/signup" method="POST">
-    <label>Email
-      <input name="email" placeholder="
+
+      
+      <input name="email" placeholder="Email" class="form-control" required />
       {{!-- {{#if email}}
       {{email}}
       {{/if}} --}}
-      enter your email" required />
-    </label>
-    <label>Password
-      <input type="password" name="password" placeholder="*****" class="form-control"required />
-    </label>
-    <label>Name
+
+      <input type="password" name="password" placeholder="Password" class="form-control"required />
+
+   
       <input type="text" name="name" placeholder="Name" class="form-control" required />
-    </label>
-        <label>Do you consent to receive marketing
+
       <select id="consent" name="consent" class="form-control">
+        <option selected>Do you consent to receive marketing</option>
         <option value="Yes">Yes</option>
         <option value="No">No</option>
         </select>
