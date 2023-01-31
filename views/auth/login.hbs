@@ -4,7 +4,11 @@
   <h2>Login</h2>
   <form action="/login" method="POST">
     <label>Email
-      <input name="email" placeholder="enter your email" class="form-control"/>
+      <input 
+      {{#if errorMessage}}
+      value="{{email}}"
+      {{/if}}
+      name="email" placeholder="enter your email" class="form-control"/>
     </label>
     <label>Password
       <input type="password" name="password" placeholder="*****" class="form-control"/>
