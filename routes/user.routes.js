@@ -31,11 +31,11 @@ router.post("/edit-details", async (req, res, next) => {
   res.redirect("/profile");
 });
 
-router.get("/forgot-password", isLoggedIn, (req, res, next) => {
-  res.render("profile/forgot-password");
+router.get("/change-password", isLoggedIn, (req, res, next) => {
+  res.render("profile/change-password");
 });
 
-router.post("/forgot-password", async (req, res, next) => {
+router.post("/change-password", async (req, res, next) => {
   try {
     const { currentPassword, newPasswordFirst, newPasswordSecond } = req.body;
     console.log(req.body);
@@ -45,26 +45,26 @@ router.post("/forgot-password", async (req, res, next) => {
     console.log(passwordHash);
 
     if (!bcrypt.compareSync(currentPassword, passwordHash)) {
-      res.render("profile/forgot-password", {
+      res.render("profile/change-password", {
         errorMessage: "current password is incorrect",
       });
     }
 
     if (newPasswordFirst !== newPasswordSecond) {
-      res.render("profile/forgot-password", {
+      res.render("profile/change-password", {
         errorMessage: "passwords must match",
       });
     }
 
     if (currentPassword === newPasswordFirst) {
-      res.render("profile/forgot-password", {
+      res.render("profile/change-password", {
         errorMessage: "new password must be different",
       });
     }
 
     const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
     if (!regex.test(newPasswordFirst)) {
-      res.render("profile/forgot-password", {
+      res.render("profile/change-password", {
         errorMessage:
           "Password not long enough. Must contain at least one uppercase letter",
       });
@@ -82,4 +82,4 @@ router.post("/forgot-password", async (req, res, next) => {
 });
 
 module.exports = router;
-git;
+
