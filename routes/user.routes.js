@@ -81,5 +81,13 @@ router.post("/forgot-password", async (req, res, next) => {
   }
 });
 
+router.post("/delete", async (req, res, next) => {
+  try {
+    await User.findByIdAndRemove(req.session.currentUser._id);
+    await res.redirect("/");
+  } catch (err) {
+    next(err);
+  }
+});
+
 module.exports = router;
-git;
