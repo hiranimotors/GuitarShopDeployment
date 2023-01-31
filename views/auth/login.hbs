@@ -3,12 +3,8 @@
 <div id="form">
   <h2>Login</h2>
   <form action="/login" method="POST">
-    <label>Email
-      <input name="email" placeholder="enter your email" class="form-control"/>
-    </label>
-    <label>Password
-      <input type="password" name="password" placeholder="*****" class="form-control"/>
-    </label>
+      <input name="email" placeholder="Email" class="form-control"/>
+      <input type="password" name="password" placeholder="Password" class="form-control"/>
     <button type="submit" class="btn btn-primary">Log In</button>
     {{#if errorMessage}}
       <p class="error">{{errorMessage}}</p>

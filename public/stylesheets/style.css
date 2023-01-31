@@ -6,32 +6,39 @@ body {
   min-height: 100vh;
 }
 
-a {
-  color: #00b7ff;
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-h1 {
-  color: 15px;
-}
+/* Header Area - Includes Logo, Top Nav and Main Nav bar */
 
 #header {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  padding-right: 10px;
+  justify-content: space-evenly;
+  gap: 350px;
   background-color: #00071a;
 }
 
-#navSection {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  background-color: #566573;
-}
+/* Logo */
 
 #logo {
   padding-left: 20px;
   color: white;
+}
+
+#logo a {
+  text-decoration: none;
+  color: white;
+}
+
+/* Top Nav - Right Nav with links to login/signup etc */
+
+#topNav {
+  color: white;
+  padding-top: 15px;
 }
 
 #topNav a {
@@ -39,40 +46,32 @@ h1 {
   color: white;
 }
 
-#topNav {
-  color: white;
-  padding-top: 5px;
-}
-
-#bottomNav ul {
-  list-style: none;
-  padding-left: 0;
-}
-
 #topNav ul {
   list-style: none;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   gap: 10px;
 }
 
-#mainNav {
+/* Main Nav bar for products */
+
+#productNav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: #566573;
   padding-top: 7px;
 }
 
-#mainNav ul {
+#productNav ul {
   list-style: none;
   display: flex;
   flex-direction: row;
   gap: 10px;
 }
 
-#mainNav li {
-  color: white;
-  font-size: 20px;
-}
-
-#mainNav a {
+#productNav a {
   text-decoration: none;
   color: white;
   font-size: 20px;
@@ -82,22 +81,20 @@ h1 {
   color: red;
 }
 
+/* Form CSS */
+
 #form form {
   display: flex;
   flex-direction: column;
   width: 25vw;
+  gap: 20px;
 }
 
 #form input {
   width: 100%;
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
-}
+/* User Profile CSS */
 
 .profile {
   display: flex;
@@ -121,10 +118,12 @@ h1 {
   font-size: 20px;
 }
 
+/* Footer area */
+
 footer {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-evenly;
   background-color: #00071a;
   color: white;
   margin-top: auto;
@@ -133,53 +132,60 @@ footer {
   padding-top: 10px;
 }
 
-#carouselExample {
-  width: 750px;
-  
-}
-
-.carousel-item img {
-  width: 550px;
-}
-
-.tales {
-  width: 100%;
-}
-.carousel-inner{
-  width:100%;
-  max-height: 560px !important;
-}
-
-.container-md {
+#bottomNav ul {
+  list-style: none;
+  padding-left: 0;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-.carouselCaption {
-  color: black;
-  text-align: end;
-  
+  flex-direction: column;
 }
 
-.carousel-control-next
-{
-  filter: invert(100%);
-}
-.carousel-control-prev {
-  filter: invert(100%);
-}
-.carousel-indicators {
-  filter: invert(100%);
+#bottomNav a {
+  text-decoration: none;
+  color: white;
 }
 
-.allProducts {
+#bottomNav a:hover {
+  text-decoration: underline;
+}
+
+/* Product Layout CSS */
+
+.productsDisplay {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: center;
   gap: 10px;
-
+  padding-bottom: 50px;
 }
+
+.individualProduct {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  padding-top: 20px;
+}
+
+#individualProductImg img{
+width: 500px;
+}
+
+#individualProductInfo {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+}
+
+#individualProductInfo ul, li{
+  list-style:none;
+  padding-left: 0;
+}
+
+.cardimg {
+  width: 200px;
+}
+
+/* Admin area CSS */
 
 #adminNav {
   padding-top: 7px;
@@ -193,7 +199,6 @@ footer {
 }
 
 #adminNav li {
-
   font-size: 20px;
 }
 
@@ -202,25 +207,46 @@ footer {
   font-size: 20px;
 }
 
-#logo a {
-  text-decoration: none;
-  color: white;
+/* Homepage carousel code - Bootstrap */
+
+#carouselExample {
+  width: 750px;
 }
 
-#productName {
-  width: 90vw;
+.carousel-item img {
+  width: 550px;
 }
 
-#productLeft {
-  width: 45vw;
+.tales {
+  width: 100vw;
 }
 
-#productRight {
-  width: 40vw;
+.carousel-inner{
+  width:100vw;
+  max-height: 560px !important;
 }
 
-.individualProduct {
+.container-md {
   display: flex;
   flex-direction: row;
+  justify-content: center;
 }
 
+/* Changing colours of carousel text and indicators from white to black */
+
+.carouselCaption {
+  color: black;
+  text-align: end;
+}
+
+.carousel-control-next{
+  filter: invert(100%);
+}
+
+.carousel-control-prev {
+  filter: invert(100%);
+}
+
+.carousel-indicators {
+  filter: invert(100%);
+}

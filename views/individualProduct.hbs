@@ -1,33 +1,29 @@
 <div class="container">
 
 
-<div class="container">
-  <div class="row">
-    <div class="col">
-    <h1>{{productName}}</h1>
+  <div class="individualProduct">
+
+
+    <div id="individualProductImg">
+            <h2>{{productName}}</h2>
+      <img src="{{images}}" />
     </div>
 
-  </div>
-  <div class="row">
-    <div class="col">
-    <img src="{{images}}">
-    </div>
-    <div class="col">
 
-    </div>
-    <div class="col">
-<div id="productRight">
-    <ul>
-        <li>Name: {{productName}}</li>
-        <li>Price: {{price}}</li>
-        <li>Manufacturer: {{manufacturer}}</li>
-        <li>Model: {{model}}</li>
-        <li>Colour: {{Colour}}</li>
-     
-    </ul>
 
-</div>
+      <div id="individualProductInfo">
+        
+    <h2>£{{price}}</h2>
+        <ul>
+          <li><b>Name:</b> {{productName}}</li>
+          <li><b>Manufacturer:</b> {{manufacturer}}</li>
+          <li><b>Model:</b> {{model}}</li>
+          <li><b>Colour:</b> {{Colour}}</li>
+          <li><br/></li>
+          <li><b>Description</b></li>
+          <li>{{description}}</li>
+        </ul>
+        <a class="btn btn-primary" href="#" role="button">Add to Favourites</a>
     </div>
   </div>
 </div>
-
