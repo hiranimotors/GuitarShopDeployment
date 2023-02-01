@@ -24,9 +24,9 @@ const userSchema = new Schema(
     },
     consent: {
       type: String,
-      required: true
-     
-    }
+      required: true,
+    },
+    favourites: [{ type: Schema.Types.ObjectId, ref: "Product" }],
   },
   {
     timestamps: true,

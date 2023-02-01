@@ -1,6 +1,6 @@
 const isLoggedIn = (req,res,next) => {
     if(!req.session.currentUser) {
-        res.redirect('/login')
+        res.render('auth/login', {errorMessage: "You must either log in or sign up"})
     }
     next()
 }

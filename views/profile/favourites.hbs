@@ -1,0 +1,8 @@
+{{#each favourites}}
+  <div>{{this.productName}}</div>
+  <div>
+   <form method="POST" action="/profile/favourites/{{this._id}}/remove">
+<button class="warning" type="submit">remove from favourites</button>
+</form>
+  </div>
+{{/each}}

@@ -89,5 +89,43 @@ router.post("/delete", async (req, res, next) => {
     next(err);
   }
 });
+router.post(
+  "/add-to-favourites/:productId",
+  isLoggedIn,
+  async (req, res, next) => {
+    try {
+      await User.findByIdAndUpdate(req.session.currentUser._id, {
+        $push: { favourites: req.params.productId },
+      });
+      await res.redirect("/profile/favourites");
+    } catch (err) {
+      next(err);
+    }
+  }
+);
+
+router.get("/favourites", isLoggedIn, async (req, res, next) => {
+  try {
+    const userPopulated = await User.findById(
+      req.session.currentUser._id
+    ).populate("favourites");
+    console.log(userPopulated);
+    res.render("profile/favourites", userPopulated);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post(
+  "/favourites/:productId/remove",
+  isLoggedIn,
+  async (req, res, next) => {
+    await User.findByIdAndUpdate(req.session.currentUser._id, {
+      $pull: { favourites: req.params.productId },
+    });
+    const updatedUser = await User.findById(req.session.currentUser._id);
+    res.redirect("/profile/favourites");
+  }
+);
 
 module.exports = router;

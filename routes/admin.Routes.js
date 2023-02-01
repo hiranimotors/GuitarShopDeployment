@@ -4,13 +4,20 @@ const Product = require("../models/Product.model");
 const {
   isLoggedIn,
   isLoggedOut,
-  isAdmin
+  isAdmin,
 } = require("../middleware/route.guard");
 const bcrypt = require("bcryptjs");
 const saltRounds = 10;
 
-// ADMIN ROUTES
-
+router.get("/", isLoggedIn, isAdmin, (req, res, next) => {
+  try {
+    res.render("admin/adminHome", {
+      userInSession: req.session.currentUser,
+    });
+  } catch (err) {
+    next(err);
+  }
+});
 
 router.get("/all-products", isLoggedIn, isAdmin, async (req, res, next) => {
   try {
@@ -24,23 +31,49 @@ router.get("/all-products", isLoggedIn, isAdmin, async (req, res, next) => {
 });
 
 router.get("/create-product", isLoggedIn, isAdmin, (req, res, next) => {
-    try {
-      res.render("admin/adminCreateProduct");
-    } catch (err) {
-      next(err);
-    }
-  });
-  
-  router.post("/create-product", isLoggedIn, isAdmin, async (req, res, next) => {
-    try {
-      await Product.create(req.body);
-      res.redirect("/admin/all-products");
-    } catch (err) {
-      next(err);
-    }
-  });
+  try {
+    res.render("admin/adminCreateProduct");
+  } catch (err) {
+    next(err);
+  }
+});
 
-router.get("/:productId",isLoggedIn, isAdmin, (req, res, next) => {
+router.post("/create-product", isLoggedIn, isAdmin, async (req, res, next) => {
+  try {
+    await Product.create(req.body);
+    res.redirect("/admin/all-products");
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get("/users", isLoggedIn, isAdmin, async (req, res, next) => {
+  try {
+    const users = await User.find({ userType: "user" });
+
+    await console.log(users);
+    await res.render("admin/users", { users });
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.get("/users/:userId", isLoggedIn, isAdmin, async (req, res, next) => {
+  try {
+    const user = await User.findById(req.params.userId);
+    await console.log(user);
+    await res.render("admin/individualUser", user);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post("/users/:userId/edit", async (req, res, next) => {
+  await User.findByIdAndUpdate(req.params.userId, req.body);
+  await res.redirect(`/admin/users/${req.params.userId}`);
+});
+
+router.get("/:productId", isLoggedIn, isAdmin, (req, res, next) => {
   try {
     Product.findById(req.params.productId).then((individualProduct) => {
       console.log(individualProduct);
@@ -51,28 +84,23 @@ router.get("/:productId",isLoggedIn, isAdmin, (req, res, next) => {
   }
 });
 
-
-router.post("/:productId/delete",isLoggedIn, isAdmin, async (req, res, next) => {
-  try {
-    const id = req.params.productId
-    console.log("id is" + id)
-    await Product.findByIdAndDelete(id);
-    await res.redirect("/admin/all-products");
-  } catch (err) {
-    next(err);
+router.post(
+  "/:productId/delete",
+  isLoggedIn,
+  isAdmin,
+  async (req, res, next) => {
+    try {
+      const id = req.params.productId;
+      console.log("id is" + id);
+      await Product.findByIdAndDelete(id);
+      await res.redirect("/admin/all-products");
+    } catch (err) {
+      next(err);
+    }
   }
-});
+);
 
-// router.get("/admin/:productId/edit", async (req, res, next) => {
-//   try {
-//     const product = await Product.findById(req.params.productId);
-//     res.render("admin/edit-product", product);
-//   } catch (err) {
-//     next(err);
-//   }
-// });
-
-router.post("/admin/:productId/edit",isLoggedIn, isAdmin, async (req, res, next) => {
+router.post("/:productId/edit", isLoggedIn, isAdmin, async (req, res, next) => {
   try {
     await Product.findByIdAndUpdate(req.params.productId, req.body);
     res.redirect(`/admin/${req.params.productId}`);
@@ -81,6 +109,8 @@ router.post("/admin/:productId/edit",isLoggedIn, isAdmin, async (req, res, next)
   }
 });
 
-
+router.get("/hi", isLoggedIn, isAdmin, (req, res) => {
+  res.send("hi");
+});
 
 module.exports = router;

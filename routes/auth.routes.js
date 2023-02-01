@@ -20,22 +20,18 @@ router.get("/signup", isLoggedOut, (req, res, next) => {
 router.post("/signup", async (req, res, next) => {
   try {
     console.log(req.body);
-    const { email, password, name, consent } = req.body;
-    // let consentBool = false
-    // if (consent === "on"){consentBool = true}
-    // if (!consent){
+    const { email, password, passwordSecondEntry, name, consent } = req.body;
 
-    // }
-
-    if (!email || !password || !name || !consent) {
-      console.log("info missing");
-      res.render("auth/signup.hbs", {
+    if (!email || !password || !passwordSecondEntry || !name || !consent) {
+      console.log("info missing"); // if one of the fields has not been filled in
+      res.render("auth/signup", {
         errorMessage:
           "Please fill in all mandatory fields. Email and password are required.",
       });
       return;
     }
-    const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+    const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/; //This is a regular expression that will ensure the user's password
+    // is long enough and has at least one uppercase letter
     if (!regex.test(password)) {
       res.render("auth/signup", {
         errorMessage:
@@ -44,6 +40,9 @@ router.post("/signup", async (req, res, next) => {
         password: password,
       });
       return;
+    }
+    if (password !== passwordSecondEntry) {
+      res.render("auth/signup", { errorMessage: "passwords must match" });
     }
     const salt = await bcrypt.genSalt(saltRounds);
     const hashedPassword = await bcrypt.hash(password, salt);
@@ -84,7 +83,11 @@ router.post("/login", async (req, res, next) => {
     }
     if (bcrypt.compareSync(password, user.passwordHash)) {
       req.session.currentUser = user;
-      await res.redirect("/profile");
+      if (req.session.currentUser.userType === "admin") {
+        await res.redirect("/admin");
+      } else {
+        await res.redirect("/profile");
+      }
     }
     if (!bcrypt.compareSync(password, user.passwordHash)) {
       await res.render("auth/login", {
@@ -148,16 +151,6 @@ router.get("/bassguitars", (req, res, next) => {
     });
 });
 
-router.get("/admin", isLoggedIn, isAdmin, (req, res, next) => {
-  try {
-    res.render("admin/adminHome", {
-      userInSession: req.session.currentUser,
-    });
-  } catch (err) {
-    next(err);
-  }
-});
-
 router.get("/products/:productId", (req, res, next) => {
   Product.findById(req.params.productId)
     .then((individualProduct) => {
@@ -169,4 +162,4 @@ router.get("/products/:productId", (req, res, next) => {
     });
 });
 
-module.exports = router;
+module.exports = router

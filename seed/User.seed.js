@@ -5,22 +5,60 @@ const MONGO_URI = require("../db/index");
 
 const data = [
   {
-    email: "craig@craig",
+    email: "joesatriani@gmail.com",
     passwordHash: "fjghsdfhgjksdhgj",
-    userType: "admin",
+    userType: "user",
+    name: "Joe Satriani",
+    consent: "Yes",
+    favourites: [],
   },
   {
-    email: "craig@craig",
+    email: "guthriegovan@gmail.com",
     passwordHash: "fjghsdfhgjksdhgj",
-    userType: "admin",
-  }
+    userType: "user",
+    name: "Guthrie Govan",
+    consent: "Yes",
+    favourites: ["63d510e9e233db263150fdc2"],
+  },
+  {
+    email: "yngwiemalmsteen@gmail.com",
+    passwordHash: "fjghsdfhgjksdhgj",
+    userType: "user",
+    name: "Yngwie Malmsteen",
+    consent: "Yes",
+    favourites: [],
+  },
+  {
+    email: "johnpetrucci@gmail.com",
+    passwordHash: "fjghsdfhgjksdhgj",
+    userType: "user",
+    name: "John Petrucci",
+    consent: "No",
+    favourites: [],
+  },
+  {
+    email: "robinford@gmail.com",
+    passwordHash: "fjghsdfhgjksdhgj",
+    userType: "user",
+    name: "Robin Ford",
+    consent: "Yes",
+    favourites: [],
+  },
+  {
+    email: "tomquayle@gmail.com",
+    passwordHash: "fjghsdfhgjksdhgj",
+    userType: "user",
+    name: "Tom Quayle",
+    consent: "Yes",
+    favourites: [],
+  },
 ];
 
 mongoose
   .connect(MONGO_URI)
   .then(() => {
     console.log("Connection Made");
-    Product.create(data);
+    User.create(data);
   })
   .catch((error) => {
     console.log(error);
