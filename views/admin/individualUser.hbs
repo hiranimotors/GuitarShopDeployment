@@ -1,5 +1,15 @@
 
 <div class="container">
+
+       <div id="adminNav">
+        <ul class="nav nav-tabs">
+            <li class="nav-item"><a class="nav-link" href="/admin">Admin Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="/admin/users">See All Users</a></li>
+            <li class="nav-item"><a class="nav-link"href="/admin/all-products">Product List</a></li>
+            <li class="nav-item"><a class="nav-link" href="/admin/create-product">Create New Product</a></li>
+           
+        </ul>
+    </div>
 <div id="form" >
   <h2>{{name}}</h2>
   <form action="/admin/users/{{_id}}/edit" method="POST">
@@ -7,13 +17,19 @@
       
       <input name="email" value="{{email}}" class="form-control" required />
         <input type="text" name="name" value="{{name}}" class="form-control" required />
+        Current User Type: {{userType}}
+        <select id="userType" name="userType" class="form-control">
 
-      <select id="consent" name="consent" class="form-control">
-        <option selected>Does this user consent to receive marketing?</option>
-        <option value="Yes" selected>Yes</option>
+        <option value="user">User</option>
+        <option value="admin">Admin</option>
+        </select>
+        Current User Consent: {{consent}}
+        <select id="consent" name="consent" class="form-control">
+
+        <option value="Yes">Yes</option>
         <option value="No">No</option>
         </select>
-    </label>
+
     <button type="submit" class="btn btn-primary">Edit Details</button>
                 <form method="POST" action="/profile/delete">
 <button class="btn btn-danger" type="submit">Delete User</button>

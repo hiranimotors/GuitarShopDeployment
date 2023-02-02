@@ -2,20 +2,33 @@
 <div class="profile">
 <h1>Welcome {{userInSession.name}}</h1>
      <div id="profileNav">
-        <ul>
-            <li> <a href="/profile/edit-details">Edit Personal Information</a> </li>
-            <li> <a href="/profile/favourites">Favourites</a> </li>
-            <form method="POST" action="/profile/delete">
-<button class="warning" type="submit">delete my account</button>
-</form>
+     
+
+     <div id="adminNav">
+        <ul class="nav nav-tabs">
+            <li class="nav-item"><a class="nav-link" href="/profile">My Profile</a></li>
+            <li class="nav-item"><a class="nav-link" href="/profile/favourites">Favourites</a> </li>
+            <li class="nav-item"><a class="nav-link" href="/profile/edit-details">Edit Personal Information</a> </li>
+
+           
         </ul>
     </div>
+
+
+
+
     <div>
         <p>Name: {{userInSession.name}}</p>
         <p>Email: {{userInSession.email}}</p>
         <p>Marketing: {{userInSession.consent}}</p>
+
+
+                <form method="POST" action="/profile/delete">
+<button class="warning" type="submit">delete my account</button>
+</form>
     </div>
     </div>
+
 
 </div>
 

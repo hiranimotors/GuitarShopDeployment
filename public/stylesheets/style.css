@@ -26,12 +26,12 @@ body {
 
 #logo {
   padding-left: 20px;
-  color: white;
+  color: #fd7e14;
 }
 
 #logo a {
   text-decoration: none;
-  color: white;
+  color: #fd7e14;
 }
 
 /* Top Nav - Right Nav with links to login/signup etc */
@@ -44,6 +44,10 @@ body {
 #topNav a {
   text-decoration: none;
   color: white;
+}
+
+#topNav a:hover {
+  color: #fd7e14;
 }
 
 #topNav ul {
@@ -75,6 +79,10 @@ body {
   text-decoration: none;
   color: white;
   font-size: 20px;
+}
+
+#productNav a:hover {
+  color: #fd7e14;
 }
 
 .warning {
@@ -118,6 +126,10 @@ body {
   font-size: 20px;
 }
 
+#profileDelete a{
+  color: red;
+}
+
 /* Footer area */
 
 footer {
@@ -145,7 +157,7 @@ footer {
 }
 
 #bottomNav a:hover {
-  text-decoration: underline;
+    color: #fd7e14;
 }
 
 /* Product Layout CSS */
@@ -174,6 +186,7 @@ width: 500px;
   display: flex;
   flex-direction: column;
   width: 500px;
+  padding-bottom: 20px;
 }
 
 #individualProductInfo ul, li{
@@ -185,26 +198,49 @@ width: 500px;
   width: 200px;
 }
 
+.buttonProducts {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.card-body a {
+  text-decoration: none;
+  color: black;
+}
+
 /* Admin area CSS */
 
 #adminNav {
   padding-top: 7px;
 }
 
-#adminNav ul {
-  list-style: none;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-}
-
-#adminNav li {
-  font-size: 20px;
-}
-
 #adminNav a {
   text-decoration: none;
   font-size: 20px;
+  color: black;
+}
+
+#adminNav a:hover {
+  text-decoration: none;
+  font-size: 20px;
+  color: #fd7e14;
+}
+
+#adminUsers {
+  display: flex;
+  flex-direction: column;
+  width: 625px;
+  border: #adb5bd;
+  border-style: solid;
+  border-width: 1px;
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 5px;
+}
+
+.userDetails {
+  padding: 5px;
 }
 
 /* Homepage carousel code - Bootstrap */
@@ -251,13 +287,23 @@ width: 500px;
   filter: invert(100%);
 }
 
-/* Errors */
+/* Review Section */
 
-.error {
-  background-color: red;
+#reviewHeader {
+  padding-top: 20px;
+}
+
+#review {
+  border-color: #adb5bd;
+  border-width: 1px;
   border-style: solid;
-  border-color: red;
   border-radius: 5px;
-  color: white;
-  padding: 2px;
+  margin-top: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  max-height: 500px;
+  overflow: auto;
+  margin-bottom: 20px;
 }

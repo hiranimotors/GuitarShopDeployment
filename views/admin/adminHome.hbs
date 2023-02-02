@@ -1,11 +1,12 @@
 <div class="container">
     
-    <h2>Welcome {{name}} you are Admin</h2>
+    <h2>Welcome {{userInSession.name}} you are Admin</h2>
      <div id="adminNav">
-        <ul>
-            <li><a href="/admin/users">see all users</a></li>
-            <li><a href="/admin/all-products">product list</a></li>
-            <li><a href="/admin/create-product">create new product</a></li>
+        <ul class="nav nav-tabs">
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="/admin">Admin Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="/admin/users">See All Users</a></li>
+            <li class="nav-item"><a class="nav-link"href="/admin/all-products">Product List</a></li>
+            <li class="nav-item"><a class="nav-link" href="/admin/create-product">Create New Product</a></li>
            
         </ul>
     </div>

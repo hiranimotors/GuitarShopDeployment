@@ -18,19 +18,20 @@
     <h1>Amps</h1>
   {{/if}}
 
-  <a href="javascript:history.back()">Go Back</a>
+ 
   <div class="productsDisplay">
 
     {{#each allProducts}}
       <div class="card" style="width: 18rem;">
-        <img src="{{images}}" class="card-img-top" alt="..." />
+        <a href="/products/{{_id}}"><img src="{{images}}" class="card-img-top" alt="{{productName}}" /></a>
         <div class="card-body">
-          <h5 class="card-title">{{productName}}</h5>
+          <a href="/products/{{_id}}"><h5 class="card-title">{{productName}}</h5></a>
           <p class="card-text">£{{price}}</p>
-          <a href="/products/{{_id}}" class="btn btn-primary">More Info</a>
+          <div class="buttonProducts">
           <form method="POST" action="/profile/add-to-favourites/{{_id}}">
-            <button class="warning" type="submit">add to favourites</button>
+            <button class="btn btn-success" type="submit">add to favourites</button>
           </form>
+          </div>
         </div>
       </div>
 
@@ -38,12 +39,15 @@
 
     {{#each acousticGuitars}}
       <div class="card" style="width: 18rem;">
-        <img src="{{images}}" class="card-img-top" alt="..." />
+        <a href="/products/{{_id}}"><img src="{{images}}" class="card-img-top" alt="..." /></a>
         <div class="card-body">
-          <h5 class="card-title">{{productName}}</h5>
+         <a href="/products/{{_id}}"><h5 class="card-title">{{productName}}</h5></a>
           <p class="card-text">£{{price}}</p>
-          <a href="/products/{{_id}}" class="btn btn-primary">More Info</a>
-
+          <div class="buttonProducts">
+          <form method="POST" action="/profile/add-to-favourites/{{_id}}">
+            <button class="btn btn-success" type="submit">add to favourites</button>
+          </form>
+          </div>
         </div>
       </div>
 
@@ -51,11 +55,15 @@
 
     {{#each electricGuitars}}
       <div class="card" style="width: 18rem;">
-        <img src="{{images}}" class="card-img-top" alt="..." />
+        <a href="/products/{{_id}}"><img src="{{images}}" class="card-img-top" alt="..." /></a>
         <div class="card-body">
-          <h5 class="card-title">{{productName}}</h5>
+         <a href="/products/{{_id}}"><h5 class="card-title">{{productName}}</h5></a>
           <p class="card-text">£{{price}}</p>
-          <a href="/products/{{_id}}" class="btn btn-primary">More Info</a>
+          <div class="buttonProducts">
+          <form method="POST" action="/profile/add-to-favourites/{{_id}}">
+            <button class="btn btn-success" type="submit">add to favourites</button>
+          </form>
+          </div>
         </div>
       </div>
 
@@ -63,11 +71,15 @@
 
     {{#each bassGuitars}}
       <div class="card" style="width: 18rem;">
-        <img src="{{images}}" class="card-img-top" alt="..." />
+        <a href="/products/{{_id}}"><img src="{{images}}" class="card-img-top" alt="..." /></a>
         <div class="card-body">
-          <h5 class="card-title">{{productName}}</h5>
+         <a href="/products/{{_id}}"><h5 class="card-title">{{productName}}</h5></a>
           <p class="card-text">£{{price}}</p>
-          <a href="/products/{{_id}}" class="btn btn-primary">More Info</a>
+          <div class="buttonProducts">
+          <form method="POST" action="/profile/add-to-favourites/{{_id}}">
+            <button class="btn btn-success" type="submit">add to favourites</button>
+          </form>
+          </div>
         </div>
       </div>
 
@@ -75,11 +87,15 @@
 
         {{#each pedals}}
       <div class="card" style="width: 18rem;">
-        <img src="{{images}}" class="card-img-top" alt="..." />
+        <a href="/products/{{_id}}"><img src="{{images}}" class="card-img-top" alt="..." /></a>
         <div class="card-body">
-          <h5 class="card-title">{{productName}}</h5>
+         <a href="/products/{{_id}}"><h5 class="card-title">{{productName}}</h5></a>
           <p class="card-text">£{{price}}</p>
-          <a href="/products/{{_id}}" class="btn btn-primary">More Info</a>
+          <div class="buttonProducts">
+          <form method="POST" action="/profile/add-to-favourites/{{_id}}">
+            <button class="btn btn-success" type="submit">add to favourites</button>
+          </form>
+          </div>
         </div>
       </div>
 
@@ -87,11 +103,15 @@
 
         {{#each amplifiers}}
       <div class="card" style="width: 18rem;">
-        <img src="{{images}}" class="card-img-top" alt="..." />
+        <a href="/products/{{_id}}"><img src="{{images}}" class="card-img-top" alt="..." /></a>
         <div class="card-body">
-          <h5 class="card-title">{{productName}}</h5>
+         <a href="/products/{{_id}}"><h5 class="card-title">{{productName}}</h5></a>
           <p class="card-text">£{{price}}</p>
-          <a href="/products/{{_id}}" class="btn btn-primary">More Info</a>
+          <div class="buttonProducts">
+          <form method="POST" action="/profile/add-to-favourites/{{_id}}">
+            <button class="btn btn-success" type="submit">add to favourites</button>
+          </form>
+          </div>
         </div>
       </div>
 
