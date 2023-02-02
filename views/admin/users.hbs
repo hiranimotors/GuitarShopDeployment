@@ -1,7 +1,9 @@
-<ul> Current Users
+<div class="container">
+<h1>Current Users</h1>
+<ul> 
 {{#each users}}
-<p><a href="/admin/users/{{_id}}">{{name}}</a></p>
+<li><a href="/admin/users/{{_id}}">{{name}}</a></li>
 {{/each}}
 
 </ul>
-
+</div>

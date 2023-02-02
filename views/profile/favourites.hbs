@@ -1,8 +1,21 @@
+<div class="container">
+      <h1>My Favourites</h1>
+  <div class="productsDisplay"></div>
 {{#each favourites}}
-  <div>{{this.productName}}</div>
-  <div>
-   <form method="POST" action="/profile/favourites/{{this._id}}/remove">
-<button class="warning" type="submit">remove from favourites</button>
-</form>
-  </div>
+<div class="card" style="width: 18rem;">
+        <img src="{{this.images}}" class="card-img-top" alt="..." />
+        <div class="card-body">
+          <h5 class="card-title">{{this.productName}}</h5>
+          <p class="card-text">£{{this.price}}</p>
+          <a href="/products/{{_id}}" class="btn btn-primary">More Info</a>
+
+
+             <form method="POST" action="/profile/favourites/{{this._id}}/remove">
+<button class="btn btn-danger" type="submit">remove from favourites</button>
+          </form>
+        </div>
+      </div>
 {{/each}}
+
+</div>
+</div>

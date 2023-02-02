@@ -9,12 +9,15 @@
         <input type="text" name="name" value="{{name}}" class="form-control" required />
 
       <select id="consent" name="consent" class="form-control">
-        <option value="none">Does this user consent to receive marketing?</option>
+        <option selected>Does this user consent to receive marketing?</option>
         <option value="Yes" selected>Yes</option>
         <option value="No">No</option>
         </select>
     </label>
     <button type="submit" class="btn btn-primary">Edit Details</button>
+                <form method="POST" action="/profile/delete">
+<button class="btn btn-danger" type="submit">Delete User</button>
+</form>
 
     {{#if errorMessage}}
       <p class="error">{{errorMessage}}</p>
