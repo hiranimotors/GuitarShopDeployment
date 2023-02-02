@@ -151,6 +151,28 @@ router.get("/bassguitars", (req, res, next) => {
     });
 });
 
+router.get("/pedals", (req, res, next) => {
+  Product.find({ productType: "pedal" })
+    .then((pedals) => {
+      console.log(pedals);
+      res.render("all-products", { pedals });
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
+router.get("/amplifiers", (req, res, next) => {
+  Product.find({ productType: "amplifier" })
+    .then((amplifiers) => {
+      console.log(amplifiers);
+      res.render("all-products", { amplifiers });
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
 router.get("/products/:productId", (req, res, next) => {
   Product.findById(req.params.productId)
     .then((individualProduct) => {

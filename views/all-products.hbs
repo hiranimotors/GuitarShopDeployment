@@ -11,6 +11,12 @@
   {{#if bassGuitars}}
     <h1>Bass Guitars</h1>
   {{/if}}
+    {{#if pedals}}
+    <h1>Pedals</h1>
+  {{/if}}
+    {{#if amplifiers}}
+    <h1>Amps</h1>
+  {{/if}}
 
   <a href="javascript:history.back()">Go Back</a>
   <div class="productsDisplay">
@@ -56,6 +62,30 @@
     {{/each}}
 
     {{#each bassGuitars}}
+      <div class="card" style="width: 18rem;">
+        <img src="{{images}}" class="card-img-top" alt="..." />
+        <div class="card-body">
+          <h5 class="card-title">{{productName}}</h5>
+          <p class="card-text">£{{price}}</p>
+          <a href="/products/{{_id}}" class="btn btn-primary">More Info</a>
+        </div>
+      </div>
+
+    {{/each}}
+
+        {{#each pedals}}
+      <div class="card" style="width: 18rem;">
+        <img src="{{images}}" class="card-img-top" alt="..." />
+        <div class="card-body">
+          <h5 class="card-title">{{productName}}</h5>
+          <p class="card-text">£{{price}}</p>
+          <a href="/products/{{_id}}" class="btn btn-primary">More Info</a>
+        </div>
+      </div>
+
+    {{/each}}
+
+        {{#each amplifiers}}
       <div class="card" style="width: 18rem;">
         <img src="{{images}}" class="card-img-top" alt="..." />
         <div class="card-body">
