@@ -246,11 +246,11 @@ width: 500px;
 /* Homepage carousel code - Bootstrap */
 
 #carouselExample {
-  width: 750px;
+  width: 550px;
 }
 
 .carousel-item img {
-  width: 550px;
+  width: 350px;
 }
 
 .tales {
