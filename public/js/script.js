@@ -2,3 +2,5 @@
 document.addEventListener("DOMContentLoaded", () => {
   console.log("GuitarShop JS imported successfully!");
 });
+
+
