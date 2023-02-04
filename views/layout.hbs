@@ -17,12 +17,29 @@
     <div id="logo"><a href="/"><h1>| Guitar Shop |</h1></a></div>
     <div>{{userInSession}}</div>
     <div id="topNav">
+
+{{!-- Block for contextual links based on logged in status and userType --}}
         <ul>
             <li><a href="/signup">Sign Up</a></li>
             <li><a href="/login">Login</a></li>
             <li><a href="/profile">My Profile</a></li>
             <li><a href="/logout">Logout</a></li>
+            <li><a href="/admin">Admin</a></li>
         </ul>
+
+{{#if isLoggedInUser}}
+        <ul>
+            <li><a href="/profile">My Profile</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+{{/if}}
+{{#if isLoggedInAdmin}}
+        <ul>
+            <li><a href="/profile">My Profile</a></li>
+            <li><a href="/admin">Admin</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+{{/if}}
     </div>
 </div>
 
@@ -31,13 +48,12 @@
         <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/all-products">All Products</a></li>
-            <li><a href="/acousticguitars">Acoustic Guitars</a></li>
-            <li><a href="/electricguitars">Electric Guitars</a></li>
-            <li><a href="/bassguitars">Bass Guitars</a></li>
-            <li><a href="/pedals">Pedals</a></li>
-            <li><a href="/amplifiers">Amps</a></li>
+            <li><a href="/acoustic%20guitar">Acoustic Guitars</a></li>
+            <li><a href="/electric%20guitar">Electric Guitars</a></li>
+            <li><a href="/bass%20guitar">Bass Guitars</a></li>
+            <li><a href="/pedal">Pedals</a></li>
+            <li><a href="/amplifier">Amps</a></li>
         </ul>
-
 </div>
       {{{body}}}
 
@@ -53,11 +69,11 @@
         <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/all-products">All Products</a></li>
-            <li><a href="/acousticguitars">Acoustic Guitars</a></li>
-            <li><a href="/electricguitars">Electric Guitars</a></li>
-            <li><a href="/bassguitars">Bass Guitars</a></li>
-            <li><a href="/pedals">Pedals</a></li>
-            <li><a href="/amplifiers">Amps</a></li>
+            <li><a href="/acoustic%20guitar">Acoustic Guitars</a></li>
+            <li><a href="/electric%20guitar">Electric Guitars</a></li>
+            <li><a href="/bass%20guitar">Bass Guitars</a></li>
+            <li><a href="/pedal">Pedals</a></li>
+            <li><a href="/amplifier">Amps</a></li>
         </ul>
     </div>
     <div id="contact">

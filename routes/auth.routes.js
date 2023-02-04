@@ -118,7 +118,7 @@ router.get("/all-products", async (req, res, next) => {
   }
 });
 
-router.get("/acousticguitars", (req, res, next) => {
+router.get("/acoustic%20guitar", (req, res, next) => {
   Product.find({ productType: "acoustic guitar" })
     .then((acousticGuitars) => {
       console.log(acousticGuitars);
@@ -129,7 +129,7 @@ router.get("/acousticguitars", (req, res, next) => {
     });
 });
 
-router.get("/electricguitars", (req, res, next) => {
+router.get("/electric%20guitar", (req, res, next) => {
   Product.find({ productType: "electric guitar" })
     .then((electricGuitars) => {
       console.log(electricGuitars);
@@ -140,7 +140,7 @@ router.get("/electricguitars", (req, res, next) => {
     });
 });
 
-router.get("/bassguitars", (req, res, next) => {
+router.get("/bass%20guitar", (req, res, next) => {
   Product.find({ productType: "bass guitar" })
     .then((bassGuitars) => {
       console.log(bassGuitars);
@@ -151,7 +151,7 @@ router.get("/bassguitars", (req, res, next) => {
     });
 });
 
-router.get("/pedals", (req, res, next) => {
+router.get("/pedal", (req, res, next) => {
   Product.find({ productType: "pedal" })
     .then((pedals) => {
       console.log(pedals);
@@ -162,7 +162,7 @@ router.get("/pedals", (req, res, next) => {
     });
 });
 
-router.get("/amplifiers", (req, res, next) => {
+router.get("/amplifier", (req, res, next) => {
   Product.find({ productType: "amplifier" })
     .then((amplifiers) => {
       console.log(amplifiers);
@@ -172,6 +172,7 @@ router.get("/amplifiers", (req, res, next) => {
       next(err);
     });
 });
+
 
 router.get("/products/:productId", (req, res, next) => {
   Product.findById(req.params.productId)
@@ -183,5 +184,6 @@ router.get("/products/:productId", (req, res, next) => {
       next(err);
     });
 });
+
 
 module.exports = router
