@@ -11,7 +11,7 @@
         </ul>
     </div>
 <div id="form">
-      <form action="admin/{{_id}}/edit" method="POST">
+      <form action="/admin/{{_id}}/edit" method="POST">
     <div class="mb-3">
   <label for="productName" class="form-label">Product Name</label>
   <input type="text" value="{{productName}}" name="productName" class="form-control" id="productName" placeholder="{{productName}}">
@@ -36,7 +36,7 @@
       <img src="{{images}}" class="img-thumbnail" alt="..." />
       <br/>
   <label for="images" class="form-label">Image URL</label>
-  <input type="text" value="{{images}}" class="form-control" id="images" placeholder="{{images}}">
+  <input type="text" value="{{images}}" name="images" class="form-control" id="images" placeholder="{{images}}">
 </div>
     <div class="mb-3">
   <label for="colour" class="form-label">Colour</label>
@@ -48,7 +48,7 @@
 </div>
     <div class="mb-3">
   <label for="pickups" class="form-label">Pickups</label>
-  <input type="text"  value="{{pickups}}" class="form-control" id="pickups" placeholder="{{pickups}}">
+  <input type="text"  value="{{pickups}}" name="pickups" class="form-control" id="pickups" placeholder="{{pickups}}">
 </div>
 <div class="mb-3">
   <label for="description" class="form-label">Description</label>

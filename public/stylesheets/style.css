@@ -94,6 +94,19 @@ body {
   color: red;
 }
 
+#homeText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
+.accordion {
+  width: 33vw;
+  margin: 20px;
+}
+
+
 /* Form CSS */
 
 #form form {
@@ -101,6 +114,7 @@ body {
   flex-direction: column;
   width: 25vw;
   gap: 20px;
+  padding-bottom: 50px;
 }
 
 #form input {
@@ -182,11 +196,19 @@ footer {
   justify-content: center;
   gap: 10px;
   padding-bottom: 50px;
+ 
 }
 
 .productsDisplay img {
 border: none;
+padding-top: 20px;
+
 }
+
+#individualProductImg img{
+  border: none;
+}
+
 
 .card-body {
   display: flex;
@@ -201,13 +223,14 @@ border: none;
   flex-direction: row;
   gap: 10px;
   padding-top: 20px;
+  width: 50vw;
 }
 
 
 #individualProductInfo {
   display: flex;
   flex-direction: column;
-  width: 500px;
+  width: 30vw;
   padding-bottom: 20px;
   padding-left: 75px;
 }
@@ -225,6 +248,8 @@ border: none;
 .cardimg {
   width: 200px;
 }
+
+
 
 .buttonProducts {
   display: flex;
@@ -316,7 +341,7 @@ border: none;
   padding: 10px;
   display: flex;
   flex-direction: column;
-  width: 500px;
+  width: 30vw;
   max-height: 500px;
   overflow: auto;
   margin-bottom: 20px;

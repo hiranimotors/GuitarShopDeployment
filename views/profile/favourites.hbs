@@ -10,7 +10,7 @@
   <div class="productsDisplay">
 {{#each favourites}}
 <div class="card" style="width: 18rem;">
- <a href="/products/{{_id}}"><img src="{{images}}" class="img-fluid" alt="..." /></a>
+ <a href="/products/{{_id}}"><img src="{{images}}" class="rounded mx-auto d-block" alt="..." /></a>
         <div class="card-body">
          <a href="/products/{{_id}}"><h5 class="card-title">{{productName}}</h5></a>
           <p class="card-text">£{{this.price}}</p>
