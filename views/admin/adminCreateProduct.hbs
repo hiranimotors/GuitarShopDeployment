@@ -1,11 +1,12 @@
 <div class="container">
     
     <h2>Create</h2>
-     <div id="adminNav">
-        <ul>
-            <li>User List</li>
-            <li>Product Lists</li>
-            <li>Create New Product</li>
+     <div id="profileNav">
+        <ul class="nav nav-tabs">
+            <li class="nav-item"><a class="nav-link" href="/admin">Admin Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="/admin/users">See All Users</a></li>
+            <li class="nav-item"><a class="nav-link" href="/admin/all-products">Product List</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="/admin/create-product">Create New Product</a></li>
            
         </ul>
     </div>
@@ -33,7 +34,7 @@
 </div>
     <div class="mb-3">
   <label for="images" class="form-label">Image URL</label>
-  <input type="text" class="form-control" id="images" placeholder="">
+  <input type="text" name="images" class="form-control"  id="images" placeholder="">
 </div>
     <div class="mb-3">
   <label for="colour" class="form-label">Colour</label>
@@ -45,7 +46,7 @@
 </div>
     <div class="mb-3">
   <label for="pickups" class="form-label">Pickups</label>
-  <input type="text" class="form-control" id="pickups" placeholder="">
+  <input type="text" name="pickups" class="form-control" id="pickups" placeholder="">
 </div>
 <div class="mb-3">
   <label for="description" class="form-label">Description</label>

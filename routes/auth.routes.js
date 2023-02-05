@@ -129,4 +129,83 @@ router.get("/logout", async (req, res, next) => {
   });
 });
 
-module.exports = router;
+router.get("/all-products", async (req, res, next) => {
+  try {
+    const allProducts = await Product.find();
+    console.log(allProducts);
+
+    res.render("all-products", { allProducts });
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get("/acoustic%20guitar", (req, res, next) => {
+  Product.find({ productType: "acoustic guitar" })
+    .then((acousticGuitars) => {
+      console.log(acousticGuitars);
+      res.render("all-products", { acousticGuitars });
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
+router.get("/electric%20guitar", (req, res, next) => {
+  Product.find({ productType: "electric guitar" })
+    .then((electricGuitars) => {
+      console.log(electricGuitars);
+      res.render("all-products", { electricGuitars });
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
+router.get("/bass%20guitar", (req, res, next) => {
+  Product.find({ productType: "bass guitar" })
+    .then((bassGuitars) => {
+      console.log(bassGuitars);
+      res.render("all-products", { bassGuitars });
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
+router.get("/pedal", (req, res, next) => {
+  Product.find({ productType: "pedal" })
+    .then((pedals) => {
+      console.log(pedals);
+      res.render("all-products", { pedals });
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
+router.get("/amplifier", (req, res, next) => {
+  Product.find({ productType: "amplifier" })
+    .then((amplifiers) => {
+      console.log(amplifiers);
+      res.render("all-products", { amplifiers });
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
+
+router.get("/products/:productId", (req, res, next) => {
+  Product.findById(req.params.productId)
+    .then((individualProduct) => {
+      console.log(individualProduct);
+      res.render("individualProduct", individualProduct);
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
+
+module.exports = router

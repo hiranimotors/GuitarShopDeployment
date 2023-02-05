@@ -21,12 +21,29 @@
         {{/if}}
     </div>
     <div id="topNav">
+
+{{!-- Block for contextual links based on logged in status and userType --}}
         <ul>
             <li><a href="/signup">Sign Up</a></li>
             <li><a href="/login">Login</a></li>
             <li><a href="/profile">My Profile</a></li>
             <li><a href="/logout">Logout</a></li>
+            <li><a href="/admin">Admin</a></li>
         </ul>
+
+{{#if isLoggedInUser}}
+        <ul>
+            <li><a href="/profile">My Profile</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+{{/if}}
+{{#if isLoggedInAdmin}}
+        <ul>
+            <li><a href="/profile">My Profile</a></li>
+            <li><a href="/admin">Admin</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+{{/if}}
     </div>
 </div>
 
@@ -35,21 +52,19 @@
         <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/all-products">All Products</a></li>
-            <li><a href="/acousticguitars">Acoustic Guitars</a></li>
-            <li><a href="/electricguitars">Electric Guitars</a></li>
-            <li><a href="/bassguitars">Bass Guitars</a></li>
-            <li><a href="#">Pedals</a></li>
-            <li><a href="#">Amps</a></li>
+            <li><a href="/acoustic%20guitar">Acoustic Guitars</a></li>
+            <li><a href="/electric%20guitar">Electric Guitars</a></li>
+            <li><a href="/bass%20guitar">Bass Guitars</a></li>
+            <li><a href="/pedal">Pedals</a></li>
+            <li><a href="/amplifier">Amps</a></li>
         </ul>
-
 </div>
-
       {{{body}}}
 
 <footer>
     <div id="copyright">
         <h2>About Us</h2>
-        GuitarShop Copyright 2022-2023
+       © GuitarShop Copyright 2022-2023
         <br />Omar Ali
         <br />Craig Butler
     </div>
@@ -58,17 +73,18 @@
         <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/all-products">All Products</a></li>
-            <li><a href="/acousticguitars">Acoustic Guitars</a></li>
-            <li><a href="/electricguitars">Electric Guitars</a></li>
-            <li><a href="/bassguitars">Bass Guitars</a></li>
-            <li><a href="#">Pedals</a></li>
-            <li><a href="#">Amps</a></li>
+            <li><a href="/acoustic%20guitar">Acoustic Guitars</a></li>
+            <li><a href="/electric%20guitar">Electric Guitars</a></li>
+            <li><a href="/bass%20guitar">Bass Guitars</a></li>
+            <li><a href="/pedal">Pedals</a></li>
+            <li><a href="/amplifier">Amps</a></li>
         </ul>
     </div>
     <div id="contact">
         <h2>Contact Us</h2>
-        <p>Email@email.com</p>
-        <p>1 Fake Street, London, E1 1AA</p>
+        Email@email.com
+        <br/>3 Abbey Rd, London NW8 9AY
+        
     </div>
 </footer>      
 

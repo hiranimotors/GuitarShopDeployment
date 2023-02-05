@@ -1,16 +1,25 @@
 <div class="container">
 
-<h1>All Products</h1>
+<h2>All Products</h2>
+
+     <div id="profileNav">
+        <ul class="nav nav-tabs">
+            <li class="nav-item"><a class="nav-link" href="/admin">Admin Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="/admin/users">See All Users</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="/admin/all-products">Product List</a></li>
+            <li class="nav-item"><a class="nav-link" href="/admin/create-product">Create New Product</a></li>
+           
+        </ul>
+    </div>
 <div class="productsDisplay">
 
 
 {{#each allProducts}}
 <div class="card" style="width: 18rem;">
-  <img src="{{images}}" class="card-img-top" alt="...">
+      <a href="/admin/{{_id}}"><img src="{{images}}" class="img-thumbnail mx-auto d-block" alt="..."></a>
   <div class="card-body">
-    <h5 class="card-title">{{productName}}</h5>
+   <a href="/admin/{{_id}}"> <h5 class="card-title">{{productName}}</h5></a>
     <p class="card-text">£{{price}}</p>
-    <a href="/admin/{{_id}}" class="btn btn-primary">More Info</a>
   </div>
 </div>
 

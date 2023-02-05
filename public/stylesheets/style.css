@@ -26,12 +26,12 @@ body {
 
 #logo {
   padding-left: 20px;
-  color: white;
+  color: #fd7e14;
 }
 
 #logo a {
   text-decoration: none;
-  color: white;
+  color: #fd7e14;
 }
 
 /* Top Nav - Right Nav with links to login/signup etc */
@@ -44,6 +44,10 @@ body {
 #topNav a {
   text-decoration: none;
   color: white;
+}
+
+#topNav a:hover {
+  color: #fd7e14;
 }
 
 #topNav ul {
@@ -61,7 +65,9 @@ body {
   flex-direction: row;
   justify-content: center;
   background-color: #566573;
-  padding-top: 7px;
+  margin-bottom: 20px;
+  
+
 }
 
 #productNav ul {
@@ -69,6 +75,9 @@ body {
   display: flex;
   flex-direction: row;
   gap: 10px;
+  margin-bottom: 0;
+  height: 50px;
+  align-items: center;
 }
 
 #productNav a {
@@ -77,9 +86,26 @@ body {
   font-size: 20px;
 }
 
+#productNav a:hover {
+  color: #fd7e14;
+}
+
 .warning {
   color: red;
 }
+
+#homeText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
+.accordion {
+  width: 33vw;
+  margin: 20px;
+}
+
 
 /* Form CSS */
 
@@ -88,6 +114,7 @@ body {
   flex-direction: column;
   width: 25vw;
   gap: 20px;
+  padding-bottom: 50px;
 }
 
 #form input {
@@ -101,21 +128,33 @@ body {
   flex-direction: column;
 }
 
-#profileNav ul {
+#profilePositioning {
   list-style: none;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: flex-start;
   gap: 10px;
-}
+} 
 
-#profileNav li {
-  font-size: 20px;
+#profileNav {
+  padding-top: 7px;
+  padding-bottom: 20px;
 }
 
 #profileNav a {
   text-decoration: none;
   font-size: 20px;
+  color: black;
+}
+
+#profileNav a:hover {
+  text-decoration: none;
+  font-size: 20px;
+  color: #fd7e14;
+}
+
+#profileDelete a{
+  color: red;
 }
 
 /* Footer area */
@@ -145,7 +184,7 @@ footer {
 }
 
 #bottomNav a:hover {
-  text-decoration: underline;
+    color: #fd7e14;
 }
 
 /* Product Layout CSS */
@@ -157,23 +196,43 @@ footer {
   justify-content: center;
   gap: 10px;
   padding-bottom: 50px;
+ 
 }
+
+.productsDisplay img {
+border: none;
+padding-top: 20px;
+
+}
+
+#individualProductImg img{
+  border: none;
+}
+
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+
 
 .individualProduct {
   display: flex;
   flex-direction: row;
   gap: 10px;
   padding-top: 20px;
+  width: 50vw;
 }
 
-#individualProductImg img{
-width: 500px;
-}
 
 #individualProductInfo {
   display: flex;
   flex-direction: column;
-  width: 500px;
+  width: 30vw;
+  padding-bottom: 20px;
+  padding-left: 75px;
 }
 
 #individualProductInfo ul, li{
@@ -181,40 +240,56 @@ width: 500px;
   padding-left: 0;
 }
 
+.breadcrumb-item a{
+  text-transform: capitalize;
+}
+
+
 .cardimg {
   width: 200px;
 }
 
-/* Admin area CSS */
 
-#adminNav {
-  padding-top: 7px;
-}
 
-#adminNav ul {
-  list-style: none;
+.buttonProducts {
   display: flex;
   flex-direction: row;
-  gap: 10px;
+  justify-content: space-between;
 }
 
-#adminNav li {
-  font-size: 20px;
-}
-
-#adminNav a {
+.card-body a {
   text-decoration: none;
-  font-size: 20px;
+  color: black;
+}
+
+/* Admin area CSS */
+
+
+
+#adminUsers {
+  display: flex;
+  flex-direction: column;
+  width: 625px;
+  border: #adb5bd;
+  border-style: solid;
+  border-width: 1px;
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 5px;
+}
+
+.userDetails {
+  padding: 5px;
 }
 
 /* Homepage carousel code - Bootstrap */
 
 #carouselExample {
-  width: 750px;
+  width: 550px;
 }
 
 .carousel-item img {
-  width: 550px;
+  width: 350px;
 }
 
 .tales {
@@ -251,13 +326,23 @@ width: 500px;
   filter: invert(100%);
 }
 
-/* Errors */
+/* Review Section */
 
-.error {
-  background-color: red;
+#reviewHeader {
+  padding-top: 20px;
+}
+
+#review {
+  border-color: #adb5bd;
+  border-width: 1px;
   border-style: solid;
-  border-color: red;
   border-radius: 5px;
-  color: white;
-  padding: 2px;
+  margin-top: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 30vw;
+  max-height: 500px;
+  overflow: auto;
+  margin-bottom: 20px;
 }

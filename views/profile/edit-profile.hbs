@@ -1,16 +1,27 @@
 <div class="container">
+  
+      <h1>Edit Details</h1>
   <div id="form">
-    <h2>Edit Details</h2>
+
+               <div id="profileNav">
+        <ul class="nav nav-tabs">
+            <li class="nav-item"><a class="nav-link" href="/profile">My Profile</a></li>
+            <li class="nav-item"><a class="nav-link" href="/profile/favourites">Favourites</a> </li>
+            <li class="nav-item"><a class="nav-link" href="/profile/edit-details">Edit Personal Information</a> </li>
+     </ul>
+    </div>
     <form action="/profile/edit-details" method="POST">
       <label>Email
         <input
           name="email"
+                      class="form-control"
           placeholder="
     
       enter your email"
           value="{{currentUser.email}}"
           required
         />
+              </label>
         <label>Name
           <input
             value="{{currentUser.name}}"
@@ -20,14 +31,18 @@
             required
           />
         </label>
-        <label>Do you consent to receive marketing
-          <select id="consent" name="consent" class="form-control">
-            <option value="Yes">Yes</option>
-            <option value="No">No</option>
-          </select>
-        </label>
-      </label>
-     <a href="/profile/change-password">Change Password</a>
+      
+        <label>Do you consent to receive marketing emails (Please enter Yes or No)
+          <input
+            value="{{currentUser.consent}}"
+            type="text"
+            name="consent"
+            class="form-control"
+            required
+          />
+        </label>        
+
+     <a href="/profile/change-password" class="btn btn-dark">Change Password</a>
       <button type="submit" class="btn btn-primary">Update Details</button>
 
       {{#if errorMessage}}
