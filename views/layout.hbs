@@ -15,7 +15,11 @@
 
 <div id="header">
     <div id="logo"><a href="/"><h1>| Guitar Shop |</h1></a></div>
-    <div>{{currentUser}}</div>
+    <div>
+        {{#if userInSession}}
+        <p style="color:white">Logged in as {{userInSession.email}}</p>
+        {{/if}}
+    </div>
     <div id="topNav">
         <ul>
             <li><a href="/signup">Sign Up</a></li>

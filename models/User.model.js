@@ -27,6 +27,7 @@ const userSchema = new Schema(
       required: true,
     },
     favourites: [{ type: Schema.Types.ObjectId, ref: "Product" }],
+    reviews: [{ type: Schema.Types.ObjectId, ref: "Review" }],
   },
   {
     timestamps: true,

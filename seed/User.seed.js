@@ -11,6 +11,7 @@ const data = [
     name: "Joe Satriani",
     consent: "Yes",
     favourites: [],
+    reviews: [],
   },
   {
     email: "guthriegovan@gmail.com",
@@ -19,6 +20,7 @@ const data = [
     name: "Guthrie Govan",
     consent: "Yes",
     favourites: ["63d510e9e233db263150fdc2"],
+    reviews: [],
   },
   {
     email: "yngwiemalmsteen@gmail.com",
@@ -27,6 +29,7 @@ const data = [
     name: "Yngwie Malmsteen",
     consent: "Yes",
     favourites: [],
+    reviews: [],
   },
   {
     email: "johnpetrucci@gmail.com",
@@ -35,6 +38,7 @@ const data = [
     name: "John Petrucci",
     consent: "No",
     favourites: [],
+    reviews: [],
   },
   {
     email: "robinford@gmail.com",
@@ -43,6 +47,7 @@ const data = [
     name: "Robin Ford",
     consent: "Yes",
     favourites: [],
+    reviews: [],
   },
   {
     email: "tomquayle@gmail.com",
@@ -51,6 +56,7 @@ const data = [
     name: "Tom Quayle",
     consent: "Yes",
     favourites: [],
+    reviews: [],
   },
 ];
 

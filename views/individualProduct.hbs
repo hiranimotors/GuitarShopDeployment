@@ -1,29 +1,56 @@
 <div class="container">
-
-
   <div class="individualProduct">
-
-
     <div id="individualProductImg">
-            <h2>{{productName}}</h2>
-      <img src="{{images}}" />
+      <h2>{{productName}}</h2>
+      <img src="{{images}}" alt="{{productName}}" />
     </div>
+    <div id="individualProductInfo">
+      <h2>£{{price}}</h2>
+      <ul>
+        <li><b>Name:</b> {{productName}}</li>
+        <li><b>Manufacturer:</b> {{manufacturer}}</li>
+        <li><b>Model:</b> {{model}}</li>
+        <li><b>Colour:</b> {{Colour}}</li>
+        <li><br /></li>
+        <li><b>Description</b></li>
+        <li>{{description}}</li>
+      </ul>
+      <form method="POST" action="/profile/add-to-favourites/{{_id}}">
+        <button class="btn btn-success" type="submit">add to favourites</button>
+      </form>
+      <h3 id="reviewHeader" class="border-bottom">Customer Reviews</h3>
 
-
-
-      <div id="individualProductInfo">
+      <div id="review"></div>
+      {{#each reviews}}
+<p><b>{{writtenBy}}</b></p>
+{{#if active}}
+<form action="/profile/reviews/{{_id}}/edit" method="GET">
+      <button type="submit">click to edit </button>
+      </form>
+{{/if}}
+        <p>{{text}}</p>
+        <p>{{stars}} stars</p>
+        <span class="border-bottom">{{dateCreated}}</span>
+      {{/each}}
+      </div>
         
-    <h2>£{{price}}</h2>
-        <ul>
-          <li><b>Name:</b> {{productName}}</li>
-          <li><b>Manufacturer:</b> {{manufacturer}}</li>
-          <li><b>Model:</b> {{model}}</li>
-          <li><b>Colour:</b> {{Colour}}</li>
-          <li><br/></li>
-          <li><b>Description</b></li>
-          <li>{{description}}</li>
-        </ul>
-        <a class="btn btn-primary" href="#" role="button">Add to Favourites</a>
+      
+      
+      <h3>Leave a Review</h3>
+      <form action="/products/{{_id}}/post-review" method="POST">
+        <textarea name="text" class="form-control" placeholder="Your Review"></textarea>
+        <label for="productRating" class="form-label">Product Rating 1-5</label>
+        <input
+          type="range"
+          class="form-range"
+          min="0"
+          max="5"
+          step="1"
+          id="productRange"
+          name="stars"
+        />
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
     </div>
   </div>
 </div>

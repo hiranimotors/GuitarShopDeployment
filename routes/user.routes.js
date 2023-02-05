@@ -1,8 +1,11 @@
 const router = require("express").Router();
 const User = require("../models/User.model");
 const Product = require("../models/Product.model");
+const Review = require("../models/Reviews.model");
 const { isLoggedIn, isLoggedOut } = require("../middleware/route.guard");
+
 const bcrypt = require("bcryptjs");
+const { populate } = require("../models/User.model");
 const saltRounds = 10;
 
 router.get("/", isLoggedIn, (req, res, next) => {
@@ -115,7 +118,6 @@ router.get("/favourites", isLoggedIn, async (req, res, next) => {
     next(err);
   }
 });
-
 router.post(
   "/favourites/:productId/remove",
   isLoggedIn,
@@ -124,9 +126,57 @@ router.post(
       $pull: { favourites: req.params.productId },
     });
     const updatedUser = await User.findById(req.session.currentUser._id);
-    res.redirect("/profile/favourites");
+    res.redirect("/all-products");
   }
 );
 
-module.exports = router;
+router.get("/reviews/:reviewId/edit", isLoggedIn, async (req, res, next) => {
+  const review = await Review.findById(req.params.reviewId);
+  const product = await Product.findById(review.product);
+  res.render("profile/edit-review", { review, product });
+});
 
+router.post("/reviews/:reviewId/edit", isLoggedIn, async (req, res, next) => {
+  const { text, stars } = req.body;
+  const updatedReview = await Review.findByIdAndUpdate(req.params.reviewId, {
+    text,
+    stars,
+  });
+  await console.log(updatedReview);
+  res.redirect("/profile/reviews");
+});
+
+router.get("/reviews", isLoggedIn, async (req, res, next) => {
+  try {
+    const user = await User.findById(req.session.currentUser._id).populate(
+      "reviews"
+    );
+
+    // const user = await User.findById(req.session.currentUser._id)
+    //   .populate({ path: "thisReviewIsAbout reviews", strictPopulate: false })
+    //   .populate({
+    //     path: "reviews",
+    //     populate: {
+    //       path: "thisReviewIsAbout",
+    //       model: "Review",
+    //     },
+    //   });
+
+    // const user = await User.findById(req.session.currentUser._id)
+    //   .populate({ path: "reviews", strictPopulate: false })
+    //   .populate({
+    //     path: "thisReviewIsAbout",
+    //     populate: {
+    //       path: "reviews",
+    //       model: "Product",
+    //     },
+    //   });
+
+    await console.log(`USER >>>>> ${user}`);
+    await res.render("profile/reviews", user);
+  } catch (err) {
+    next(err);
+  }
+});
+
+module.exports = router;

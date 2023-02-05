@@ -29,6 +29,11 @@ app.locals.appTitle = `${capitalize(projectName)} created with IronLauncher`;
 require("./config/session.config")(app);
 app;
 
+app.use((req, res, next) => {
+    app.locals.userInSession = req.session.currentUser
+    next()
+})
+
 // 👇 Start handling routes here
 const indexRoutes = require("./routes/index.routes");
 app.use("/", indexRoutes);
@@ -41,6 +46,9 @@ app.use("/admin", adminRoutes);
 
 const userRoutes = require("./routes/user.routes");
 app.use("/profile", userRoutes);
+
+const productRoutes = require("./routes/products.routes");
+app.use("/", productRoutes);
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);

@@ -37,6 +37,9 @@
           <h5 class="card-title">{{productName}}</h5>
           <p class="card-text">£{{price}}</p>
           <a href="/products/{{_id}}" class="btn btn-primary">More Info</a>
+          <form method="POST" action="/profile/add-to-favourites/{{_id}}">
+            <button class="warning" type="submit">add to favourites</button>
+          </form>
 
         </div>
       </div>
@@ -50,6 +53,9 @@
           <h5 class="card-title">{{productName}}</h5>
           <p class="card-text">£{{price}}</p>
           <a href="/products/{{_id}}" class="btn btn-primary">More Info</a>
+          <form method="POST" action="/profile/add-to-favourites/{{_id}}">
+            <button class="warning" type="submit">add to favourites</button>
+          </form>
         </div>
       </div>
 
@@ -62,9 +68,13 @@
           <h5 class="card-title">{{productName}}</h5>
           <p class="card-text">£{{price}}</p>
           <a href="/products/{{_id}}" class="btn btn-primary">More Info</a>
+          <form method="POST" action="/profile/add-to-favourites/{{_id}}">
+            <button class="warning" type="submit">add to favourites</button>
+          </form>
         </div>
       </div>
 
     {{/each}}
+
   </div>
 </div>
