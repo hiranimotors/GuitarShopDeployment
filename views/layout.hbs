@@ -7,60 +7,91 @@
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <title>{{appTitle}}</title>
       <link rel="stylesheet" href="/stylesheets/style.css" />
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  </head>
    </head>
 
    <body>
+
 <div id="header">
-    <div id="logo"><h1>Guitar Shop</h1></div>
-    <div id="topNav">
-        <ul>
-            <li>Sign Up</li>
-            <li>Login</li>
-            <li>My Profile</li>
-        </ul>
+    <div id="logo"><a href="/"><h1>| Guitar Shop |</h1></a></div>
+    <div>
+        {{#if userInSession}}
+        <p style="color:white">Logged in as {{userInSession.email}}</p>
+        {{/if}}
     </div>
-</div>
-    
-<div id="navSection">
-    <div id="mainNav">
+    <div id="topNav">
+
+{{!-- Block for contextual links based on logged in status and userType --}}
         <ul>
-            <li>Home</li>
-            <li>All Products</li>
-            <li>Acoustic Guitars</li>
-            <li>Bass Guitars</li>
-            <li>Electric Guitars</li>
-            <li>Pedals</li>
-            <li>Amps</li>
+            <li><a href="/signup">Sign Up</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/profile">My Profile</a></li>
+            <li><a href="/logout">Logout</a></li>
+            <li><a href="/admin">Admin</a></li>
         </ul>
+
+{{#if isLoggedInUser}}
+        <ul>
+            <li><a href="/profile">My Profile</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+{{/if}}
+{{#if isLoggedInAdmin}}
+        <ul>
+            <li><a href="/profile">My Profile</a></li>
+            <li><a href="/admin">Admin</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+{{/if}}
     </div>
 </div>
 
+<div id="productNav">
+
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/all-products">All Products</a></li>
+            <li><a href="/acoustic%20guitar">Acoustic Guitars</a></li>
+            <li><a href="/electric%20guitar">Electric Guitars</a></li>
+            <li><a href="/bass%20guitar">Bass Guitars</a></li>
+            <li><a href="/pedal">Pedals</a></li>
+            <li><a href="/amplifier">Amps</a></li>
+        </ul>
+</div>
       {{{body}}}
 
 <footer>
     <div id="copyright">
-        GuitarShop Copyright 2022-2023
-        <br />Omar ali
+        <h2>About Us</h2>
+       © GuitarShop Copyright 2022-2023
+        <br />Omar Ali
         <br />Craig Butler
     </div>
     <div id="bottomNav">
         <h2>Products</h2>
         <ul>
-            <li>All Products</li>
-            <li>Acoustic Guitars</li>
-            <li>Bass Guitars</li>
-            <li>Electric Guitars</li>
-            <li>Pedals</li>
-            <li>Amps</li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/all-products">All Products</a></li>
+            <li><a href="/acoustic%20guitar">Acoustic Guitars</a></li>
+            <li><a href="/electric%20guitar">Electric Guitars</a></li>
+            <li><a href="/bass%20guitar">Bass Guitars</a></li>
+            <li><a href="/pedal">Pedals</a></li>
+            <li><a href="/amplifier">Amps</a></li>
         </ul>
     </div>
     <div id="contact">
-        <p>Email@email.com</p>
-        <p>1 Fake Street, London, E1 1AA</p>
+        <h2>Contact Us</h2>
+        Email@email.com
+        <br/>3 Abbey Rd, London NW8 9AY
+        
     </div>
 </footer>      
 
       <script src="/js/script.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+
    </body>
 
 </html>

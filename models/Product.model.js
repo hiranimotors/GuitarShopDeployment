@@ -29,8 +29,9 @@ const productSchema = new Schema(
       type: [String],
       required: true,
     },
+    reviews: [{ type: Schema.Types.ObjectId, ref: "Review" }],
     colour: {
-      type: String,
+      type: [String],
     },
     description: {
       type: String,
@@ -40,7 +41,7 @@ const productSchema = new Schema(
       type: Number,
     },
     pickups: {
-      type: [String],
+      type: String,
       trim: true,
     },
   },

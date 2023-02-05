@@ -1,6 +1,6 @@
 const isLoggedIn = (req,res,next) => {
     if(!req.session.currentUser) {
-        res.redirect('/login')
+        res.render('auth/login', {errorMessage: "You must either log in or sign up"})
     }
     next()
 }
@@ -12,4 +12,14 @@ const isLoggedOut = (req,res,next) => {
     next()
 }
 
-module.exports = {isLoggedIn,isLoggedOut}
+const isAdmin = (req, res, next) => {
+    const userType = req.session.currentUser.userType
+    console.log(req.session.currentUser.userType)
+    if(userType !== "admin"){
+        res.redirect('/profile')
+    } 
+    
+    next()
+}
+
+module.exports = {isLoggedIn,isLoggedOut,isAdmin}
