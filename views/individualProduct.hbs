@@ -1,19 +1,26 @@
 <div class="container">
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="/">Home</a></li>
-            <li class="breadcrumb-item"><a href="/{{productType}}">{{productType}}s</a></li>
-    <li class="breadcrumb-item active" aria-current="page">{{productName}}</li>
-  </ol>
-</nav>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
+      <li class="breadcrumb-item"><a
+          href="/{{productType}}"
+        >{{productType}}s</a></li>
+      <li
+        class="breadcrumb-item active"
+        aria-current="page"
+      >{{productName}}</li>
+    </ol>
+  </nav>
   <div class="individualProduct">
 
     <div id="individualProductImg">
       <h2>{{productName}}</h2>
-      <img src="{{images}}" alt="{{productName}}" class="img-thumbnail mx-auto d-block"/>
+      <img
+        src="{{images}}"
+        alt="{{productName}}"
+        class="img-thumbnail mx-auto d-block"
+      />
     </div>
-
-
 
     <div id="individualProductInfo">
 
@@ -34,11 +41,11 @@
       <h3 id="reviewHeader" class="border-bottom">Customer Reviews</h3>
       <div id="review">
 
-        <p><b>Craig Butler</b></p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus
-          eos quaerat rerum aspernatur doloribus corporis! Assumenda maxime
-          dolore provident explicabo suscipit corporis neque. Debitis culpa,
-          perferendis dolorum illum est eos.</p>
+        {{#each reviews}}
+          <p><b>{{createdBy}}</b></p>
+          <p>{{text}}</p>
+
+        {{/each}}
 
         <span class="border-bottom"></span>
 
@@ -65,7 +72,6 @@
           dolore provident explicabo suscipit corporis neque. Debitis culpa,
           perferendis dolorum illum est eos.</p>
 
-
         <span class="border-bottom"></span>
 
         {{!-- {{#each reviews}}
@@ -79,7 +85,11 @@
       <h3>Leave a Review</h3>
 
       <form action="/products/{{_id}}/post-review" method="POST">
-        <textarea name="comment" class="form-control" placeholder="Your Review"></textarea>
+        <textarea
+          name="comment"
+          class="form-control"
+          placeholder="Your Review"
+        ></textarea>
         <label for="productRating" class="form-label">Product Rating 1-5</label>
         <input
           type="range"
