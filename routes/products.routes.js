@@ -18,7 +18,7 @@ router.get("/all-products", async (req, res, next) => {
 router.get("/acousticguitars", (req, res, next) => {
   Product.find({ productType: "acoustic guitar" })
     .then((acousticGuitars) => {
-      console.log(acousticGuitars);
+      // console.log(acousticGuitars);
       res.render("all-products", { acousticGuitars });
     })
     .catch((err) => {
@@ -40,7 +40,7 @@ router.get("/electricguitars", (req, res, next) => {
 router.get("/bassguitars", (req, res, next) => {
   Product.find({ productType: "bass guitar" })
     .then((bassGuitars) => {
-      console.log(bassGuitars);
+      // console.log(bassGuitars);
       res.render("all-products", { bassGuitars });
     })
     .catch((err) => {
