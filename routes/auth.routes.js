@@ -93,7 +93,7 @@ router.post("/login", async (req, res, next) => {
           await Review.findByIdAndUpdate(x._id, { active: true });
         }
       }
-      await console.log(reviews);
+      // await console.log(reviews);
       // console.log(req.session.currentUser);
       // console.log(reviews[0].userID);
       if (req.session.currentUser.userType === "admin") {
@@ -195,7 +195,6 @@ router.get("/amplifier", (req, res, next) => {
     });
 });
 
-
 router.get("/products/:productId", (req, res, next) => {
   Product.findById(req.params.productId)
     .then((individualProduct) => {
@@ -207,5 +206,4 @@ router.get("/products/:productId", (req, res, next) => {
     });
 });
 
-
-module.exports = router
+module.exports = router;

@@ -29,7 +29,7 @@ router.get("/acousticguitars", (req, res, next) => {
 router.get("/electricguitars", (req, res, next) => {
   Product.find({ productType: "electric guitar" })
     .then((electricGuitars) => {
-      console.log(electricGuitars);
+      // console.log(electricGuitars);
       res.render("all-products", { electricGuitars });
     })
     .catch((err) => {
