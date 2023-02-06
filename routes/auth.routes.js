@@ -83,37 +83,42 @@ router.post("/login", async (req, res, next) => {
     if (!user) {
       await res.render("auth/login", { errorMessage: "User not found" });
     }
-    if (bcrypt.compareSync(password, user.passwordHash)) {
-      req.session.currentUser = user;
-      const reviews = await Review.find();
-
-      for (x of reviews) {
-        let userID = req.session.currentUser._id.toString(); //convert ObjectID to a string
-        if (userID === x.userID) {
-          await Review.findByIdAndUpdate(x._id, { active: true });
-        }
-      }
-      // await console.log(reviews);
-      // console.log(req.session.currentUser);
-      // console.log(reviews[0].userID);
-      if (req.session.currentUser.userType === "admin") {
-        await res.redirect("/admin");
-      } else {
-        await res.redirect("/profile");
-      }
-    }
     if (!bcrypt.compareSync(password, user.passwordHash)) {
       await res.render("auth/login", {
         errorMessage: "Incorrect Password",
         email: email,
       });
     }
+
+    if (
+      user.userType === "user" &&
+      bcrypt.compareSync(password, user.passwordHash)
+    ) {
+      req.session.currentUser = user;
+      const reviews = await Review.find();
+      for (x of reviews) {
+        let userID = req.session.currentUser._id.toString();
+        if (userID === x.userID) {
+          await Review.findByIdAndUpdate(x._id, { active: true });
+        }
+      }
+      res.redirect("/profile");
+    }
+
+    if (
+      user.userType === "admin" &&
+      bcrypt.compareSync(password, user.passwordHash)
+    ) {
+      req.session.currentUser = user;
+      req.session.adminUser = user;
+      res.redirect("/admin");
+    }
   } catch (err) {
     next(err);
   }
 });
 
-router.get("/logout", async (req, res, next) => {
+router.get("/logout", isLoggedIn, async (req, res, next) => {
   const reviews = await Review.find();
 
   for (x of reviews) {
@@ -127,83 +132,6 @@ router.get("/logout", async (req, res, next) => {
     if (err) next(err);
     res.redirect("/");
   });
-});
-
-router.get("/all-products", async (req, res, next) => {
-  try {
-    const allProducts = await Product.find();
-    console.log(allProducts);
-
-    res.render("all-products", { allProducts });
-  } catch (err) {
-    next(err);
-  }
-});
-
-router.get("/acoustic%20guitar", (req, res, next) => {
-  Product.find({ productType: "acoustic guitar" })
-    .then((acousticGuitars) => {
-      console.log(acousticGuitars);
-      res.render("all-products", { acousticGuitars });
-    })
-    .catch((err) => {
-      next(err);
-    });
-});
-
-router.get("/electric%20guitar", (req, res, next) => {
-  Product.find({ productType: "electric guitar" })
-    .then((electricGuitars) => {
-      console.log(electricGuitars);
-      res.render("all-products", { electricGuitars });
-    })
-    .catch((err) => {
-      next(err);
-    });
-});
-
-router.get("/bass%20guitar", (req, res, next) => {
-  Product.find({ productType: "bass guitar" })
-    .then((bassGuitars) => {
-      console.log(bassGuitars);
-      res.render("all-products", { bassGuitars });
-    })
-    .catch((err) => {
-      next(err);
-    });
-});
-
-router.get("/pedal", (req, res, next) => {
-  Product.find({ productType: "pedal" })
-    .then((pedals) => {
-      console.log(pedals);
-      res.render("all-products", { pedals });
-    })
-    .catch((err) => {
-      next(err);
-    });
-});
-
-router.get("/amplifier", (req, res, next) => {
-  Product.find({ productType: "amplifier" })
-    .then((amplifiers) => {
-      console.log(amplifiers);
-      res.render("all-products", { amplifiers });
-    })
-    .catch((err) => {
-      next(err);
-    });
-});
-
-router.get("/products/:productId", (req, res, next) => {
-  Product.findById(req.params.productId)
-    .then((individualProduct) => {
-      console.log(individualProduct);
-      res.render("individualProduct", individualProduct);
-    })
-    .catch((err) => {
-      next(err);
-    });
 });
 
 module.exports = router;

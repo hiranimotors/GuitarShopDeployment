@@ -1,8 +1,8 @@
 <div>
-  <p><b>{{review.writtenBy}}</b></p>
-<form action="/profile/reviews/{{review._id}}/edit" method="POST">
+  <p><b>{{writtenBy}}</b></p>
+<form action="/profile/reviews/{{_id}}/edit" method="POST">
 <label> Edit your review
-<input type="text" value="{{review.text}}" class="form-control" name="text" >
+<input type="text" value="{{text}}" class="form-control" name="text" >
 </label>
         <label for="productRating" class="form-label">Product Rating 1-5</label>
         <input
@@ -16,8 +16,16 @@
         />
         <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+<form action="/profile/reviews/{{_id}}/delete" method="POST">
+<button type="submit">DELETE</button>
+</form>
+ <div id="individualProductImg">
+      <h2>{{thisReviewIsAbout.productName}}</h2>
+      <img
+        src="{{thisReviewIsAbout.images}}"
+        alt={{thisReviewIsAbout.productName}}
+        class="img-thumbnail mx-auto d-block"
+      />
+    </div>
 
-  <p>{{review.text}}</p>
-  <p>{{review.stars}} stars</p>
-  <span class="border-bottom">{{review.dateCreated}}</span>
 </div>

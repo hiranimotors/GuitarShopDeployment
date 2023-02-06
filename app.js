@@ -26,13 +26,24 @@ app.locals.appTitle = `${capitalize(projectName)} created with IronLauncher`;
 
 // Session
 
-require("./config/session.config")(app);
-app;
+const sessionFunction = require("./config/session.config");
+sessionFunction(app);
+
+// Dynamic Signup/Login/Admin/Logout
+
+app.locals.isAdmin = false;
 
 app.use((req, res, next) => {
-    app.locals.userInSession = req.session.currentUser
-    next()
-})
+  if (!req.session.adminUser || req.session.adminUser === null) {
+    app.locals.userInSession = req.session.currentUser;
+    app.locals.adminUser = false;
+  }
+  if (req.session.adminUser) {
+    app.locals.isAdmin = true;
+  }
+
+  next();
+});
 
 // 👇 Start handling routes here
 const indexRoutes = require("./routes/index.routes");

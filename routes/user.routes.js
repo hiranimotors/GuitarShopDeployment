@@ -113,7 +113,12 @@ router.get("/favourites", isLoggedIn, async (req, res, next) => {
       req.session.currentUser._id
     ).populate("favourites");
     console.log(userPopulated);
-    res.render("profile/favourites", userPopulated);
+    let areThereAnyFavourites = true;
+    if (userPopulated.favourites.length === 0) {
+      areThereAnyFavourites = false;
+    }
+
+    res.render("profile/favourites", { userPopulated, areThereAnyFavourites });
   } catch (err) {
     next(err);
   }
@@ -126,14 +131,16 @@ router.post(
       $pull: { favourites: req.params.productId },
     });
     const updatedUser = await User.findById(req.session.currentUser._id);
-    res.redirect("/all-products");
+    res.redirect("/profile/favourites");
   }
 );
 
 router.get("/reviews/:reviewId/edit", isLoggedIn, async (req, res, next) => {
-  const review = await Review.findById(req.params.reviewId);
-  const product = await Product.findById(review.product);
-  res.render("profile/edit-review", { review, product });
+  const review = await Review.findById(req.params.reviewId).populate(
+    "thisReviewIsAbout"
+  );
+
+  res.render("profile/edit-review", review);
 });
 
 router.post("/reviews/:reviewId/edit", isLoggedIn, async (req, res, next) => {
@@ -146,34 +153,40 @@ router.post("/reviews/:reviewId/edit", isLoggedIn, async (req, res, next) => {
   res.redirect("/profile/reviews");
 });
 
+router.post("/reviews/:reviewId/delete", isLoggedIn, async (req, res, next) => {
+  const review = await Review.findById(req.params.reviewId).populate(
+    "thisReviewIsAbout"
+  );
+  await Product.findByIdAndUpdate(review.thisReviewIsAbout._id, {
+    $pull: { reviews: review._id },
+  });
+  await User.findByIdAndUpdate(req.session.currentUser._id, {
+    $pull: { reviews: review._id },
+  });
+
+  await review.remove();
+
+  await res.redirect("/profile/reviews");
+});
+
 router.get("/reviews", isLoggedIn, async (req, res, next) => {
   try {
-    const user = await User.findById(req.session.currentUser._id).populate(
-      "reviews"
-    );
+    const user = await User.findById(req.session.currentUser._id).populate({
+      path: "reviews",
+      populate: {
+        path: "thisReviewIsAbout",
+      },
+    });
 
-    // const user = await User.findById(req.session.currentUser._id)
-    //   .populate({ path: "thisReviewIsAbout reviews", strictPopulate: false })
-    //   .populate({
-    //     path: "reviews",
-    //     populate: {
-    //       path: "thisReviewIsAbout",
-    //       model: "Review",
-    //     },
-    //   });
+    console.log(user.reviews);
 
-    // const user = await User.findById(req.session.currentUser._id)
-    //   .populate({ path: "reviews", strictPopulate: false })
-    //   .populate({
-    //     path: "thisReviewIsAbout",
-    //     populate: {
-    //       path: "reviews",
-    //       model: "Product",
-    //     },
-    //   });
+    let areThereAnyReviews = true;
+    if (user.reviews.length === 0) {
+      areThereAnyReviews = false;
+    }
 
     await console.log(`USER >>>>> ${user}`);
-    await res.render("profile/reviews", user);
+    await res.render("profile/reviews", { user, areThereAnyReviews });
   } catch (err) {
     next(err);
   }

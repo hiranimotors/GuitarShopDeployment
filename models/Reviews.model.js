@@ -2,9 +2,8 @@ const { Schema, model } = require("mongoose");
 
 const reviewSchema = new Schema(
   {
-    thisReviewIsAbout: [
-      { type: Schema.Types.ObjectId, ref: "Product"},
-    ],
+    thisReviewIsAbout: { type: Schema.Types.ObjectId, ref: "Product" },
+
     writtenBy: {
       type: String,
       required: true,

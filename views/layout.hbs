@@ -23,27 +23,34 @@
     <div id="topNav">
 
 {{!-- Block for contextual links based on logged in status and userType --}}
-        <ul>
+        {{!-- <ul>
             <li><a href="/signup">Sign Up</a></li>
             <li><a href="/login">Login</a></li>
             <li><a href="/profile">My Profile</a></li>
             <li><a href="/logout">Logout</a></li>
             <li><a href="/admin">Admin</a></li>
-        </ul>
+        </ul> --}}
 
-{{#if isLoggedInUser}}
-        <ul>
-            <li><a href="/profile">My Profile</a></li>
-            <li><a href="/logout">Logout</a></li>
-        </ul>
-{{/if}}
-{{#if isLoggedInAdmin}}
+{{#if isAdmin}}
         <ul>
             <li><a href="/profile">My Profile</a></li>
             <li><a href="/admin">Admin</a></li>
             <li><a href="/logout">Logout</a></li>
         </ul>
+{{else if userInSession}}
+     <ul>
+            <li><a href="/profile">My Profile</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+{{else}}
+<ul>
+            <li><a href="/signup">Sign Up</a></li>
+            <li><a href="/login">Login</a></li>
+         
+        </ul>
 {{/if}}
+
+
     </div>
 </div>
 

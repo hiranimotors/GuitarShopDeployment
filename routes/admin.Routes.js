@@ -20,16 +20,7 @@ router.get("/", isLoggedIn, isAdmin, (req, res, next) => {
   }
 });
 
-router.get("/all-products", isLoggedIn, isAdmin, async (req, res, next) => {
-  try {
-    const allProducts = await Product.find();
-    console.log(allProducts);
 
-    res.render("admin/adminAllProducts", { allProducts });
-  } catch (err) {
-    next(err);
-  }
-});
 
 router.get("/create-product", isLoggedIn, isAdmin, (req, res, next) => {
   try {
