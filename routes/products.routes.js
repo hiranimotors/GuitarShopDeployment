@@ -67,7 +67,7 @@ router.get("/amplifier", (req, res, next) => {
     });
 });
 
-router.get("/products/:productId", isLoggedIn, (req, res, next) => {
+router.get("/products/:productId", (req, res, next) => {
   Product.findById(req.params.productId)
     .populate("reviews")
     .then((individualProduct) => {

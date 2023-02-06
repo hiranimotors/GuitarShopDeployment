@@ -26,7 +26,7 @@ const productSchema = new Schema(
       required: true,
     },
     images: {
-      type: [String],
+      type: Object,
       required: true,
     },
     reviews: [{ type: Schema.Types.ObjectId, ref: "Review" }],
