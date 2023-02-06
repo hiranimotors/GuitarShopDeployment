@@ -20,8 +20,6 @@ router.get("/", isLoggedIn, isAdmin, (req, res, next) => {
   }
 });
 
-
-
 router.get("/create-product", isLoggedIn, isAdmin, (req, res, next) => {
   try {
     res.render("admin/adminCreateProduct");
@@ -37,6 +35,42 @@ router.post("/create-product", isLoggedIn, isAdmin, async (req, res, next) => {
   } catch (err) {
     next(err);
   }
+});
+
+router.get("/reviews", isLoggedIn, isAdmin, async (req, res, next) => {
+  try {
+    const reviews = await Review.find().populate("thisReviewIsAbout");
+    let areThereAnyReviews = true;
+    if (reviews.length === 0) {
+      areThereAnyReviews = false;
+    }
+
+    await res.render("admin/reviews", {
+      reviews,
+      areThereAnyReviews,
+      currentUser: req.session.currentUser,
+    });
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get("/reviews/:reviewId/edit", isLoggedIn, async (req, res, next) => {
+  const review = await Review.findById(req.params.reviewId).populate(
+    "thisReviewIsAbout"
+  );
+
+  res.render("admin/edit-review", review);
+});
+
+router.post("/reviews/:reviewId/edit", isLoggedIn, async (req, res, next) => {
+  const { text, stars } = req.body;
+  const updatedReview = await Review.findByIdAndUpdate(req.params.reviewId, {
+    text,
+    stars,
+  });
+  await console.log(updatedReview);
+  res.redirect("/admin/reviews");
 });
 
 router.get("/users", isLoggedIn, isAdmin, async (req, res, next) => {
@@ -60,10 +94,15 @@ router.get("/users/:userId", isLoggedIn, isAdmin, async (req, res, next) => {
   }
 });
 
-router.post("/users/:userId/edit", async (req, res, next) => {
-  await User.findByIdAndUpdate(req.params.userId, req.body);
-  await res.redirect(`/admin/users/${req.params.userId}`);
-});
+router.post(
+  "/users/:userId/edit",
+  isLoggedIn,
+  isAdmin,
+  async (req, res, next) => {
+    await User.findByIdAndUpdate(req.params.userId, req.body);
+    await res.redirect(`/admin/users/${req.params.userId}`);
+  }
+);
 
 router.get("/:productId", isLoggedIn, isAdmin, (req, res, next) => {
   try {
