@@ -197,18 +197,20 @@ footer {
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
-  padding-bottom: 50px;
+
  
 }
 
 .productsDisplay img {
 border: none;
 padding-top: 20px;
+max-height: 300px;
 
 }
 
 #individualProductImg img{
   border: none;
+
 }
 
 
@@ -348,3 +350,4 @@ padding-top: 20px;
   overflow: auto;
   margin-bottom: 20px;
 }
+
