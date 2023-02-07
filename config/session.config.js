@@ -1,6 +1,6 @@
 const session = require("express-session");
 
-module.exports = (app) => {
+const sessionFunction = (app) => {
   app.set("trust proxy", 1);
   app.use(
     session({
@@ -16,3 +16,5 @@ module.exports = (app) => {
     })
   );
 };
+
+module.exports = sessionFunction;

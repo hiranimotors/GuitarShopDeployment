@@ -7,15 +7,13 @@ const { isLoggedIn, isLoggedOut } = require("../middleware/route.guard");
 router.get("/all-products", async (req, res, next) => {
   try {
     const allProducts = await Product.find();
-    // console.log(allProducts);
-
-    res.render("all-products", { allProducts });
+    await res.render("all-products", { allProducts });
   } catch (err) {
     next(err);
   }
 });
 
-router.get("/acousticguitars", (req, res, next) => {
+router.get("/acoustic%20guitar", (req, res, next) => {
   Product.find({ productType: "acoustic guitar" })
     .then((acousticGuitars) => {
       // console.log(acousticGuitars);
@@ -26,10 +24,9 @@ router.get("/acousticguitars", (req, res, next) => {
     });
 });
 
-router.get("/electricguitars", (req, res, next) => {
+router.get("/electric%20guitar", (req, res, next) => {
   Product.find({ productType: "electric guitar" })
     .then((electricGuitars) => {
-      // console.log(electricGuitars);
       res.render("all-products", { electricGuitars });
     })
     .catch((err) => {
@@ -37,10 +34,10 @@ router.get("/electricguitars", (req, res, next) => {
     });
 });
 
-router.get("/bassguitars", (req, res, next) => {
+router.get("/bass%20guitar", (req, res, next) => {
   Product.find({ productType: "bass guitar" })
     .then((bassGuitars) => {
-      // console.log(bassGuitars);
+      console.log(bassGuitars);
       res.render("all-products", { bassGuitars });
     })
     .catch((err) => {
@@ -48,14 +45,43 @@ router.get("/bassguitars", (req, res, next) => {
     });
 });
 
-router.get("/products/:productId", isLoggedIn, (req, res, next) => {
+router.get("/pedal", (req, res, next) => {
+  Product.find({ productType: "pedal" })
+    .then((pedals) => {
+      console.log(pedals);
+      res.render("all-products", { pedals });
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
+router.get("/amplifier", (req, res, next) => {
+  Product.find({ productType: "amplifier" })
+    .then((amplifiers) => {
+      console.log(amplifiers);
+      res.render("all-products", { amplifiers });
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
+router.get("/products/:productId", (req, res, next) => {
   Product.findById(req.params.productId)
     .populate("reviews")
     .then((individualProduct) => {
       console.log(
         `THIS IS THE PRODUCT PAGE FOR >>>>> ${individualProduct.productName}`
       );
-      res.render("individualProduct", individualProduct);
+      let areThereAnyReviews = true;
+      if (individualProduct.reviews.length === 0) {
+        areThereAnyReviews = false;
+      }
+      res.render("individualProduct", {
+        individualProduct,
+        areThereAnyReviews,
+      });
     })
     .catch((err) => {
       next(err);
@@ -76,7 +102,7 @@ router.post(
         timeStyle: "short",
       }).format();
       const review = await Review.create({
-        thisReviewIsAbout: [thisReviewIsAbout],
+        thisReviewIsAbout: thisReviewIsAbout,
         writtenBy: user,
         userID: userID,
         dateCreated: dateCreated,

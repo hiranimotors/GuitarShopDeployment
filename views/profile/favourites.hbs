@@ -1,3 +1,5 @@
+{{#if areThereAnyFavourites}}
+
 <div class="container">
       <h1>My Favourites</h1>
            <div id="profileNav">
@@ -8,7 +10,7 @@
      </ul>
     </div>
   <div class="productsDisplay">
-{{#each favourites}}
+{{#each userPopulated.favourites}}
 <div class="card" style="width: 18rem;">
  <a href="/products/{{_id}}"><img src="{{images}}" class="rounded mx-auto d-block" alt="..." /></a>
         <div class="card-body">
@@ -23,3 +25,20 @@
 </div>
 </div>
 </div>
+
+{{else}}
+
+<div>You currently have no products selected</div>
+<div>
+        <h2>Products</h2>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/all-products">All Products</a></li>
+            <li><a href="/acoustic%20guitar">Acoustic Guitars</a></li>
+            <li><a href="/electric%20guitar">Electric Guitars</a></li>
+            <li><a href="/bass%20guitar">Bass Guitars</a></li>
+            <li><a href="/pedal">Pedals</a></li>
+            <li><a href="/amplifier">Amps</a></li>
+        </ul>
+    </div>
+{{/if}}
