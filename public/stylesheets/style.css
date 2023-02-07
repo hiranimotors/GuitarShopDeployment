@@ -286,6 +286,15 @@ max-height: 300px;
   padding: 5px;
 }
 
+.adminReview {
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 4px;
+  padding: 10px;
+
+  
+}
+
 /* Homepage carousel code - Bootstrap */
 
 #carouselExample {
